@@ -23,5 +23,11 @@ public enum EditorLayer {
 	EditorLayer(Map<Character, String> layerMap) {
 		this.layerMap = layerMap;
 	}
+
+	public Map<Character, String> getLayerMap() {
+		return layerMap;
+	}
+	
+	
 	
 }

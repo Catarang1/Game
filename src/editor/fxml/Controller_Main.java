@@ -3,6 +3,7 @@ package editor.fxml;
 import editor.*;
 import java.net.URL;
 import java.util.*;
+import javafx.event.*;
 import javafx.fxml.*;
 import javafx.scene.canvas.*;
 import javafx.scene.control.*;
@@ -59,10 +60,37 @@ public class Controller_Main implements Initializable {
 
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
-		System.out.println("hello");
-		System.out.println(Arrays.toString(EditorLayer.values()));
+		
+		setupLayerSelection();
+		
+	}
+	
+	protected void setupLayerSelection() {
+		EventHandler<ActionEvent> layerSelect = (event) -> {
+			activeTilesBox.getChildren().clear();
+			EditorLayer selected = getSelectedLayer();
+			
+			for (Character c : selected.getLayerMap().keySet()){
+				ImageView iv = new ImageView(selected.getLayerMap().get(c));
+				iv.setFitHeight(32);
+				iv.setFitWidth(32);
+				iv.setOnMouseClicked(ev -> {
+					activeChar.setText(String.valueOf(c));
+					activeImage.setImage(new Image(selected.getLayerMap().get(c)));
+				});
+				iv.setPickOnBounds(true);
+				activeTilesBox.getChildren().add(iv);
+			}
+			
+		};
 		activeLayerComboBox.getItems().setAll(EditorLayer.values());
 		activeLayerComboBox.getSelectionModel().selectFirst();
-	}	
+		activeLayerComboBox.setOnAction(layerSelect);
+		
+	}
+	
+	protected EditorLayer getSelectedLayer() {
+		return activeLayerComboBox.getSelectionModel().getSelectedItem();
+	}
 	
 }
