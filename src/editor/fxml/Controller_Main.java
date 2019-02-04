@@ -70,14 +70,12 @@ public class Controller_Main implements Initializable {
 		setupGridLayer();
 		setupSelectMenu();
 		
-		showDocOption.setOnAction((event) -> {
-			try {
-				new DocumentationWindow();
-			} catch (IOException ex) {
-				Logger.getLogger(Controller_Main.class.getName()).log(Level.SEVERE, null, ex);
-			}
-		});
+		
 
+	}
+	
+	protected void setupHelpMenu() {
+		showDocOption.setOnAction((event) -> DocumentationWindow.get().show());
 	}
 	
 	protected void setupSelectMenu() {

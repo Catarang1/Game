@@ -1,4 +1,3 @@
-
 package editor;
 
 import java.io.*;
@@ -8,12 +7,13 @@ import javafx.scene.*;
 import javafx.stage.*;
 
 public class DocumentationWindow {
-	
+
+	private static DocumentationWindow instance;
 	private Stage stage;
 	private Scene scene;
 	private Parent root;
 
-	public DocumentationWindow() {
+	private DocumentationWindow() {
 		try {
 			root = FXMLLoader.load(getClass().getResource("/editor/fxml/editor_docView.fxml"));
 		} catch (IOException ex) {
@@ -23,9 +23,18 @@ public class DocumentationWindow {
 		stage = new Stage();
 		stage.setScene(scene);
 		stage.initModality(Modality.APPLICATION_MODAL);
+		stage.setTitle("Editor Documentation");
+	}
+
+	public static DocumentationWindow get() {
+		if (instance == null) {
+			instance = new DocumentationWindow();
+		}
+		return instance;
+	}
+
+	public void show() {
 		stage.show();
 	}
-	
-	
 
 }
