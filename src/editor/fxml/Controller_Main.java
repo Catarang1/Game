@@ -9,6 +9,7 @@ import javafx.scene.canvas.*;
 import javafx.scene.control.*;
 import javafx.scene.image.*;
 import javafx.scene.layout.*;
+import javafx.scene.paint.*;
 import javafx.scene.text.*;
 
 /**
@@ -57,20 +58,41 @@ public class Controller_Main implements Initializable {
 	@FXML private Canvas collisionLayer;
 	@FXML private Pane lightLayer;
 	@FXML private Pane interactiveLayer;
+	@FXML private Canvas gridLayer;
 
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
-		
+
 		setupLayerSelection();
-		
+		setupShowFXs();
+		setupGridLayer();
+
 	}
-	
+
+	protected void setupGridLayer() {
+		GraphicsContext brush = gridLayer.getGraphicsContext2D();
+		brush.setFill(Color.GREY);
+		for (int x = 0; x < gridLayer.getWidth() / 32; x++) {
+			if (x!=0) brush.fillRect(x*32, 0, 1, gridLayer.getHeight());
+		}
+		
+		for (int y = 0; y < gridLayer.getHeight() / 32; y++) {
+			if (y!=0) brush.fillRect(0, y*32, gridLayer.getWidth(), 1);
+		}
+	}
+
+	protected void setupShowFXs() {
+		collisionLayer.visibleProperty().bind(showCollisionsOption.selectedProperty());
+		lightLayer.visibleProperty().bind(showLightsOption.selectedProperty());
+		gridLayer.visibleProperty().bind(showGridOption.selectedProperty());
+	}
+
 	protected void setupLayerSelection() {
 		EventHandler<ActionEvent> layerSelect = (event) -> {
 			activeTilesBox.getChildren().clear();
 			EditorLayer selected = getSelectedLayer();
-			
-			for (Character c : selected.getLayerMap().keySet()){
+
+			for (Character c : selected.getLayerMap().keySet()) {
 				ImageView iv = new ImageView(selected.getLayerMap().get(c));
 				iv.setFitHeight(32);
 				iv.setFitWidth(32);
@@ -81,16 +103,16 @@ public class Controller_Main implements Initializable {
 				iv.setPickOnBounds(true);
 				activeTilesBox.getChildren().add(iv);
 			}
-			
+
 		};
 		activeLayerComboBox.getItems().setAll(EditorLayer.values());
 		activeLayerComboBox.getSelectionModel().selectFirst();
 		activeLayerComboBox.setOnAction(layerSelect);
-		
+
 	}
-	
+
 	protected EditorLayer getSelectedLayer() {
 		return activeLayerComboBox.getSelectionModel().getSelectedItem();
 	}
-	
+
 }
