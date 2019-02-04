@@ -1,3 +1,11 @@
+src/resources/actor/
+src/resources/alertTypes/
+src/resources/background/
+src/resources/collision/
+src/resources/event/
+src/resources/ground/
+src/resources/light/
+src/resources/object/
 build/
 dist/
 nbproject/

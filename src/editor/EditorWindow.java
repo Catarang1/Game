@@ -6,6 +6,7 @@ import javafx.application.Application;
 import javafx.fxml.*;
 import javafx.scene.*;
 import javafx.stage.Stage;
+import resources.*;
 
 /**
  *
