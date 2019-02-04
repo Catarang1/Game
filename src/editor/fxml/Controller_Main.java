@@ -69,8 +69,7 @@ public class Controller_Main implements Initializable {
 		setupShowFXs();
 		setupGridLayer();
 		setupSelectMenu();
-		
-		
+		setupHelpMenu();		
 
 	}
 	
