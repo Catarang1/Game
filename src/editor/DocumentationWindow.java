@@ -1,23 +1,24 @@
 
 package editor;
 
-// @author Jan
-
 import java.io.*;
-import javafx.application.*;
+import java.util.logging.*;
 import javafx.fxml.*;
 import javafx.scene.*;
 import javafx.stage.*;
 
- 
 public class DocumentationWindow {
 	
 	private Stage stage;
 	private Scene scene;
 	private Parent root;
 
-	public DocumentationWindow() throws IOException {
-		root = FXMLLoader.load(getClass().getResource("/editor/fxml/editor_docView.fxml"));
+	public DocumentationWindow() {
+		try {
+			root = FXMLLoader.load(getClass().getResource("/editor/fxml/editor_docView.fxml"));
+		} catch (IOException ex) {
+			Logger.getLogger(DocumentationWindow.class.getName()).log(Level.SEVERE, null, ex);
+		}
 		scene = new Scene(root);
 		stage = new Stage();
 		stage.setScene(scene);

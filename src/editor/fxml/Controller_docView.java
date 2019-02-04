@@ -7,11 +7,6 @@ import javafx.fxml.*;
 import javafx.scene.layout.*;
 import javafx.scene.web.*;
 
-/**
- * FXML Controller class
- *
- * @author Jan
- */
 public class Controller_docView implements Initializable {
 
 	@FXML private VBox wrapper;
