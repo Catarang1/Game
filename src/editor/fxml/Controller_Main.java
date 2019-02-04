@@ -1,8 +1,10 @@
 package editor.fxml;
 
 import editor.*;
+import java.io.*;
 import java.net.URL;
 import java.util.*;
+import java.util.logging.*;
 import javafx.event.*;
 import javafx.fxml.*;
 import javafx.scene.canvas.*;
@@ -67,6 +69,14 @@ public class Controller_Main implements Initializable {
 		setupShowFXs();
 		setupGridLayer();
 		setupSelectMenu();
+		
+		showDocOption.setOnAction((event) -> {
+			try {
+				new DocumentationWindow();
+			} catch (IOException ex) {
+				Logger.getLogger(Controller_Main.class.getName()).log(Level.SEVERE, null, ex);
+			}
+		});
 
 	}
 	
@@ -120,6 +130,7 @@ public class Controller_Main implements Initializable {
 		activeLayerComboBox.getItems().setAll(EditorLayer.values());
 		activeLayerComboBox.getSelectionModel().selectFirst();
 		activeLayerComboBox.setOnAction(layerSelect);
+		layerSelect.handle(new ActionEvent());
 
 	}
 
