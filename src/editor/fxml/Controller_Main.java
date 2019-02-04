@@ -31,14 +31,14 @@ public class Controller_Main implements Initializable {
 	@FXML private CheckMenuItem showLightsOption;
 	@FXML private CheckMenuItem showGridOption;
 	@FXML private Menu selectMenu;
-	@FXML private MenuItem selectBackground;
-	@FXML private MenuItem selectGround1;
-	@FXML private MenuItem selectGround2;
-	@FXML private MenuItem selectActor;
-	@FXML private MenuItem selectObject1;
-	@FXML private MenuItem selectObject2;
-	@FXML private MenuItem selectCollision;
-	@FXML private MenuItem selectLight;
+	@FXML public MenuItem selectBackground;
+	@FXML public MenuItem selectGround1;
+	@FXML public MenuItem selectGround2;
+	@FXML public MenuItem selectActor;
+	@FXML public MenuItem selectObject1;
+	@FXML public MenuItem selectObject2;
+	@FXML public MenuItem selectCollision;
+	@FXML public MenuItem selectLight;
 	@FXML private Menu eventsMenu;
 	@FXML private MenuItem editEventsOption;
 	@FXML private MenuItem deleteAllOption;
@@ -66,7 +66,19 @@ public class Controller_Main implements Initializable {
 		setupLayerSelection();
 		setupShowFXs();
 		setupGridLayer();
+		setupSelectMenu();
 
+	}
+	
+	protected void setupSelectMenu() {
+		selectBackground.setOnAction(e -> activeLayerComboBox.getSelectionModel().select(EditorLayer.Background));
+		selectGround1.setOnAction(e -> activeLayerComboBox.getSelectionModel().select(EditorLayer.Ground1));
+		selectGround2.setOnAction(e -> activeLayerComboBox.getSelectionModel().select(EditorLayer.Ground2));
+		selectActor.setOnAction(e -> activeLayerComboBox.getSelectionModel().select(EditorLayer.Actor));
+		selectObject1.setOnAction(e -> activeLayerComboBox.getSelectionModel().select(EditorLayer.Object1));
+		selectObject2.setOnAction(e -> activeLayerComboBox.getSelectionModel().select(EditorLayer.Object2));
+		selectCollision.setOnAction(e -> activeLayerComboBox.getSelectionModel().select(EditorLayer.Collision));
+		selectLight.setOnAction(e -> activeLayerComboBox.getSelectionModel().select(EditorLayer.Light));
 	}
 
 	protected void setupGridLayer() {

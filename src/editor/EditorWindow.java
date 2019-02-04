@@ -18,7 +18,7 @@ public class EditorWindow extends Application {
 	private Scene scene;
 	private Parent root;
 	private FXMLLoader loader;
-	private Controller_Main controller;
+	private static Controller_Main controller;
 	
 	@Override
 	public void start(Stage primaryStage) throws IOException {
@@ -41,5 +41,11 @@ public class EditorWindow extends Application {
 	public static void main(String[] args) {
 		launch(args);
 	}
+
+	public static Controller_Main getController() {
+		return controller;
+	}
+	
+	
 	
 }

@@ -1,6 +1,8 @@
 package editor;
 
+import editor.fxml.*;
 import java.util.*;
+import javafx.scene.control.*;
 import resources.*;
 
 /**
@@ -27,7 +29,4 @@ public enum EditorLayer {
 	public Map<Character, String> getLayerMap() {
 		return layerMap;
 	}
-	
-	
-	
 }
