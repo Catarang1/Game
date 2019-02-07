@@ -140,18 +140,14 @@ public class Controller_Main implements Initializable {
 
 	protected void setupInteractiveLayer() {
 		interactiveLayer.setOnMouseClicked(e -> {
-			Coords clicked = getClickCoords(e);
 			EditorLayer activeLayer = getSelectedLayer();
-			System.out.println(clicked);
 			int layer = activeLayer.ordinal();
-			int y = clicked.getPosY();
-			int x = clicked.getPosX();
+			int y = getClickCoords(e).getPosY();
+			int x = getClickCoords(e).getPosX();
 			char active = activeChar.getText().charAt(0);
 
 			if (e.getButton().equals(MouseButton.PRIMARY)) {
-
 				EditorWindow.getBoard().getTiles()[layer][y][x] = active;
-				EditorLayer.redrawLayer(activeLayer);
 			} else if (e.getButton().equals(MouseButton.SECONDARY)) {
 				switch (activeLayer) {
 					case Background: EditorWindow.getBoard().getTiles()[layer][y][x] = '#'; break;
@@ -160,9 +156,8 @@ public class Controller_Main implements Initializable {
 			} else if (e.getButton().equals(MouseButton.MIDDLE) && activeLayer == EditorLayer.Background) {
 				char[][] backgroundLayer = EditorWindow.getBoard().getTiles()[0];
 				for (char[] row : backgroundLayer) Arrays.fill(row, active);
-				EditorLayer.redrawLayer(EditorLayer.Background);
 			}
-
+			EditorLayer.redrawLayer(activeLayer);
 		});
 	}
 
