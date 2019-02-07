@@ -25,7 +25,7 @@ public class Board implements Serializable {
 		for (char[] row: tiles[2]) Arrays.fill(row, '0');
 		for (char[] row: tiles[3]) Arrays.fill(row, '0');
 		for (char[] row: tiles[4]) Arrays.fill(row, '0');
-		for (char[] row: tiles[5]) Arrays.fill(row, '0');	
+		for (char[] row: tiles[5]) Arrays.fill(row, '0');
 		for (char[] row: tiles[6]) Arrays.fill(row, '0');	
 		for (char[] row: tiles[7]) Arrays.fill(row, '0');	
 	}
@@ -89,11 +89,11 @@ public class Board implements Serializable {
 		}
 	}
 
-	public String getName() {
+	public String getTitle() {
 		return title;
 	}
 
-	public void setName(String name) {
+	public void setTitle(String name) {
 		this.title = name;
 	}
 

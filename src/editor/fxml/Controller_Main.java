@@ -4,6 +4,7 @@ import commons.*;
 import editor.*;
 import java.net.URL;
 import java.util.*;
+import javafx.animation.*;
 import javafx.event.*;
 import javafx.fxml.*;
 import javafx.scene.canvas.*;
@@ -14,6 +15,7 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.*;
 import javafx.scene.shape.*;
 import javafx.scene.text.*;
+import javafx.util.*;
 import resources.*;
 
 /**
@@ -63,6 +65,8 @@ public class Controller_Main implements Initializable {
 	@FXML private Canvas gridLayer;
 	@FXML private Canvas ground1Layer;
 	@FXML private Canvas object0Layer;
+	@FXML private VBox sidebar;
+	@FXML private StackPane stack;
 
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
@@ -73,7 +77,19 @@ public class Controller_Main implements Initializable {
 		setupSelectMenu();
 		setupHelpMenu();
 		setupInteractiveLayer();
+		setupClip();
+		setupSaveMenu();
+		redrawAll();
 
+	}
+
+	protected void setupClip() {
+		Rectangle clip = new Rectangle(0, 0, 1280, 704);
+		stack.setClip(clip);
+	}
+
+	protected void setupSaveMenu() {
+		saveOption.setOnAction((event) -> SaveWindow.show());
 	}
 
 	protected void setupHelpMenu() {
@@ -93,16 +109,19 @@ public class Controller_Main implements Initializable {
 
 	protected void setupGridLayer() {
 		GraphicsContext brush = gridLayer.getGraphicsContext2D();
-		brush.setFill(Color.GREY);
+		brush.setFill(Color.WHITE);
+		brush.setFont(Font.font("monospaced", FontWeight.NORMAL, 11));
 		for (int x = 0; x < gridLayer.getWidth() / 32; x++) {
-			if (x != 0) {
-				brush.fillRect(x * 32, 0, 1, gridLayer.getHeight());
-			}
+			if (x != 0) brush.fillRect(x * 32, 0, 1, gridLayer.getHeight());
 		}
 
 		for (int y = 0; y < gridLayer.getHeight() / 32; y++) {
-			if (y != 0) {
-				brush.fillRect(0, y * 32, gridLayer.getWidth(), 1);
+			if (y != 0) brush.fillRect(0, y * 32, gridLayer.getWidth(), 1);
+		}
+		
+		for (int x = 0 ; x < 40 ; x ++) {
+			for (int y = 0 ; y < 22 ; y ++) {
+				brush.fillText(x + "\n" + y, x*32 +3, y*32 + 10);
 			}
 		}
 	}
@@ -145,6 +164,8 @@ public class Controller_Main implements Initializable {
 			int y = getClickCoords(e).getPosY();
 			int x = getClickCoords(e).getPosX();
 			char active = activeChar.getText().charAt(0);
+			
+			flashClickedTile(x, y);
 
 			if (e.getButton().equals(MouseButton.PRIMARY)) {
 				EditorWindow.getBoard().getTiles()[layer][y][x] = active;
@@ -175,7 +196,7 @@ public class Controller_Main implements Initializable {
 		GraphicsContext brush = backgroundLayer.getGraphicsContext2D();
 		for (int y = 0; y < EditorWindow.getBoard().getTiles()[0].length; y++) {
 			for (int x = 0; x < EditorWindow.getBoard().getTiles()[0][0].length; x++) {
-				char tile = EditorWindow.getBoard().getTiles()[getSelectedLayer().ordinal()][y][x];
+				char tile = EditorWindow.getBoard().getTiles()[0][y][x];
 				Image toDraw = new Image(DataMap.get().backgroundMap.get(tile));
 				brush.drawImage(toDraw, x * 32, y * 32);
 			}
@@ -187,7 +208,7 @@ public class Controller_Main implements Initializable {
 		brush.clearRect(0, 0, brush.getCanvas().getWidth(), brush.getCanvas().getHeight());
 		for (int y = 0; y < EditorWindow.getBoard().getTiles()[0].length; y++) {
 			for (int x = 0; x < EditorWindow.getBoard().getTiles()[1][0].length; x++) {
-				char tile = EditorWindow.getBoard().getTiles()[getSelectedLayer().ordinal()][y][x];
+				char tile = EditorWindow.getBoard().getTiles()[1][y][x];
 				if (DataMap.get().groundMap.keySet().contains(tile)) {
 					Image toDraw = new Image(DataMap.get().groundMap.get(tile));
 					brush.drawImage(toDraw, x * 32, y * 32);
@@ -201,7 +222,7 @@ public class Controller_Main implements Initializable {
 		brush.clearRect(0, 0, brush.getCanvas().getWidth(), brush.getCanvas().getHeight());
 		for (int y = 0; y < EditorWindow.getBoard().getTiles()[0].length; y++) {
 			for (int x = 0; x < EditorWindow.getBoard().getTiles()[1][0].length; x++) {
-				char tile = EditorWindow.getBoard().getTiles()[getSelectedLayer().ordinal()][y][x];
+				char tile = EditorWindow.getBoard().getTiles()[2][y][x];
 				if (DataMap.get().groundMap.keySet().contains(tile)) {
 					Image toDraw = new Image(DataMap.get().groundMap.get(tile));
 					brush.drawImage(toDraw, x * 32, y * 32);
@@ -215,7 +236,7 @@ public class Controller_Main implements Initializable {
 		brush.clearRect(0, 0, brush.getCanvas().getWidth(), brush.getCanvas().getHeight());
 		for (int y = 0; y < EditorWindow.getBoard().getTiles()[0].length; y++) {
 			for (int x = 0; x < EditorWindow.getBoard().getTiles()[3][0].length; x++) {
-				char tile = EditorWindow.getBoard().getTiles()[getSelectedLayer().ordinal()][y][x];
+				char tile = EditorWindow.getBoard().getTiles()[4][y][x];
 				if (DataMap.get().objectMap.keySet().contains(tile)) {
 					Image toDraw = new Image(DataMap.get().objectMap.get(tile));
 					brush.drawImage(toDraw, x * 32, y * 32);
@@ -229,7 +250,7 @@ public class Controller_Main implements Initializable {
 		brush.clearRect(0, 0, brush.getCanvas().getWidth(), brush.getCanvas().getHeight());
 		for (int y = 0; y < EditorWindow.getBoard().getTiles()[0].length; y++) {
 			for (int x = 0; x < EditorWindow.getBoard().getTiles()[3][0].length; x++) {
-				char tile = EditorWindow.getBoard().getTiles()[getSelectedLayer().ordinal()][y][x];
+				char tile = EditorWindow.getBoard().getTiles()[5][y][x];
 				if (DataMap.get().objectMap.keySet().contains(tile)) {
 					Image toDraw = new Image(DataMap.get().objectMap.get(tile));
 					brush.drawImage(toDraw, x * 32, y * 32);
@@ -243,7 +264,7 @@ public class Controller_Main implements Initializable {
 		brush.clearRect(0, 0, brush.getCanvas().getWidth(), brush.getCanvas().getHeight());
 		for (int y = 0; y < EditorWindow.getBoard().getTiles()[0].length; y++) {
 			for (int x = 0; x < EditorWindow.getBoard().getTiles()[4][0].length; x++) {
-				char tile = EditorWindow.getBoard().getTiles()[getSelectedLayer().ordinal()][y][x];
+				char tile = EditorWindow.getBoard().getTiles()[6][y][x];
 				if (DataMap.get().collisionMap.keySet().contains(tile)) {
 					Image toDraw = new Image(DataMap.get().collisionMap.get(tile));
 					brush.drawImage(toDraw, x * 32, y * 32);
@@ -256,7 +277,7 @@ public class Controller_Main implements Initializable {
 		lightLayer.getChildren().clear();
 		for (int y = 0; y < EditorWindow.getBoard().getTiles()[0].length; y++) {
 			for (int x = 0; x < EditorWindow.getBoard().getTiles()[5][0].length; x++) {
-				char tile = EditorWindow.getBoard().getTiles()[getSelectedLayer().ordinal()][y][x];
+				char tile = EditorWindow.getBoard().getTiles()[7][y][x];
 				if (DataMap.get().lightMapActual.keySet().contains(tile)) {
 					Circle toDraw = new Circle();
 					toDraw.setRadius(DataMap.get().lightMapActual.get(tile).getRadius());
@@ -268,13 +289,28 @@ public class Controller_Main implements Initializable {
 			}
 		}
 	}
-//	
-//	public void redrawAll() {
-//		redrawBackground();
-//		redrawGround();
-//		redrawObjects();
-//		redrawCollisions();
-//		redrawLights();
-//	}
-//
+
+	public void redrawAll() {
+		redrawBackground();
+		redrawGround0();
+		redrawGround1();
+		redrawObjects0();
+		redrawObjects1();
+		redrawCollisions();
+		redrawLights();
+	}
+
+	private void flashClickedTile(int x, int y) {
+		Rectangle tile = new Rectangle(x*32, y*32, 32, 32);
+		tile.setStroke(Color.WHITE);
+		tile.setStrokeWidth(3);
+		tile.setFill(Color.TRANSPARENT);
+		interactiveLayer.getChildren().add(tile);
+		FadeTransition ft = new FadeTransition(Duration.seconds(1), tile);
+		ft.setFromValue(1);
+		ft.setToValue(0);
+		ft.setOnFinished(e -> interactiveLayer.getChildren().remove(tile));
+		ft.play();
+	}
+
 }

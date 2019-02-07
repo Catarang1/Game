@@ -28,6 +28,7 @@ public class EditorWindow extends Application {
 		stage = primaryStage;
 		stage.setScene(scene);
 		stage.setResizable(false);
+		stage.setTitle("Game Board Editor");
 		stage.show();
 		
 	}
