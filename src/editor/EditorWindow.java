@@ -1,17 +1,13 @@
 package editor;
 
+import commons.*;
 import editor.fxml.*;
 import java.io.*;
 import javafx.application.Application;
 import javafx.fxml.*;
 import javafx.scene.*;
 import javafx.stage.Stage;
-import resources.*;
 
-/**
- *
- * @author Jan
- */
 public class EditorWindow extends Application {
 	
 	private Stage stage;
@@ -19,6 +15,7 @@ public class EditorWindow extends Application {
 	private Parent root;
 	private FXMLLoader loader;
 	private static Controller_Main controller;
+	private static Board board = new Board();
 	
 	@Override
 	public void start(Stage primaryStage) throws IOException {
@@ -42,7 +39,8 @@ public class EditorWindow extends Application {
 	public static Controller_Main getController() {
 		return controller;
 	}
-	
-	
-	
+
+	public static Board getBoard() {
+		return board;
+	}
 }

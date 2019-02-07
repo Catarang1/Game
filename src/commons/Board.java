@@ -13,31 +13,31 @@ public class Board implements Serializable {
 	private String subTitle;
 	private DayCycle cycle;	public enum DayCycle {DARK, CYCLE;}	
 	
-	private char[][][] description = new char[8][22][40];
+	private char[][][] tiles = new char[8][22][40];
 	private HashMap<Coords, List<GameEvent>> events = new HashMap<>();
 	
 	public Board() {
 		title = "Default Title";
 		subTitle = "Default SubTitle";
 		cycle = DayCycle.CYCLE;
-		for (char[] row: description[0]) Arrays.fill(row, '#');
-		for (char[] row: description[1]) Arrays.fill(row, '0');
-		for (char[] row: description[2]) Arrays.fill(row, '0');
-		for (char[] row: description[3]) Arrays.fill(row, '0');
-		for (char[] row: description[4]) Arrays.fill(row, '0');
-		for (char[] row: description[5]) Arrays.fill(row, '0');	
-		for (char[] row: description[6]) Arrays.fill(row, '0');	
-		for (char[] row: description[7]) Arrays.fill(row, '0');	
+		for (char[] row: tiles[0]) Arrays.fill(row, '#');
+		for (char[] row: tiles[1]) Arrays.fill(row, '0');
+		for (char[] row: tiles[2]) Arrays.fill(row, '0');
+		for (char[] row: tiles[3]) Arrays.fill(row, '0');
+		for (char[] row: tiles[4]) Arrays.fill(row, '0');
+		for (char[] row: tiles[5]) Arrays.fill(row, '0');	
+		for (char[] row: tiles[6]) Arrays.fill(row, '0');	
+		for (char[] row: tiles[7]) Arrays.fill(row, '0');	
 	}
 	
-	public char[][] getBackgroundLayer()	{return description[0];}
-	public char[][] getGroundLayer()		{return description[1];}
-	public char[][] getGroundLayer2()		{return description[2];}
-	public char[][] getActorLayer()			{return description[3];}
-	public char[][] getObjectLayer()		{return description[4];}
-	public char[][] getObjectLayer2()		{return description[5];}
-	public char[][] getCollisionLayer()		{return description[6];}
-	public char[][] getLightLayer()			{return description[7];}
+	public char[][] getBackgroundLayer()	{return tiles[0];}
+	public char[][] getGroundLayer()		{return tiles[1];}
+	public char[][] getGroundLayer2()		{return tiles[2];}
+	public char[][] getActorLayer()			{return tiles[3];}
+	public char[][] getObjectLayer()		{return tiles[4];}
+	public char[][] getObjectLayer2()		{return tiles[5];}
+	public char[][] getCollisionLayer()		{return tiles[6];}
+	public char[][] getLightLayer()			{return tiles[7];}
 	
 	@Override
 	public String toString() {
@@ -109,8 +109,8 @@ public class Board implements Serializable {
 		return cycle;
 	}
 
-	public char[][][] getDescription() {
-		return description;
+	public char[][][] getTiles() {
+		return tiles;
 	}
 
 	public HashMap<Coords, List<GameEvent>> getEvents() {

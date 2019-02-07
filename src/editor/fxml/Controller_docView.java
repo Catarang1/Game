@@ -7,7 +7,7 @@ import javafx.fxml.*;
 import javafx.scene.layout.*;
 import javafx.scene.web.*;
 
-public class Controller_docView implements Initializable {
+public class Controller_DocView implements Initializable {
 
 	@FXML private VBox wrapper;
 	@FXML private WebView webview;
