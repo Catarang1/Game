@@ -79,6 +79,7 @@ public class Controller_Main implements Initializable {
 		setupInteractiveLayer();
 		setupClip();
 		setupSaveMenu();
+		setupEvents();
 		redrawAll();
 
 	}
@@ -93,7 +94,11 @@ public class Controller_Main implements Initializable {
 	}
 
 	protected void setupHelpMenu() {
-		showDocOption.setOnAction((event) -> DocumentationWindow.get().show());
+		showDocOption.setOnAction((event) -> DocumentationWindow.show());
+	}
+	
+	protected void setupEvents() {
+		editEventsOption.setOnAction(e -> EventsWindow.show());
 	}
 
 	protected void setupSelectMenu() {
@@ -110,7 +115,7 @@ public class Controller_Main implements Initializable {
 	protected void setupGridLayer() {
 		GraphicsContext brush = gridLayer.getGraphicsContext2D();
 		brush.setFill(Color.WHITE);
-		brush.setFont(Font.font("monospaced", FontWeight.NORMAL, 11));
+		brush.setFont(Font.font("monospaced", FontWeight.BOLD, 11));
 		for (int x = 0; x < gridLayer.getWidth() / 32; x++) {
 			if (x != 0) brush.fillRect(x * 32, 0, 1, gridLayer.getHeight());
 		}
@@ -306,7 +311,7 @@ public class Controller_Main implements Initializable {
 		tile.setStrokeWidth(3);
 		tile.setFill(Color.TRANSPARENT);
 		interactiveLayer.getChildren().add(tile);
-		FadeTransition ft = new FadeTransition(Duration.seconds(1), tile);
+		FadeTransition ft = new FadeTransition(Duration.millis(500), tile);
 		ft.setFromValue(1);
 		ft.setToValue(0);
 		ft.setOnFinished(e -> interactiveLayer.getChildren().remove(tile));

@@ -54,9 +54,7 @@ public final class DataMap {
 	void initializeCharSet() {
 		List<Character> chars = new ArrayList<>();
 		for (int i = 0x0000; i < 0x0512; i++) {
-			if ((char) i != '0') {
-				chars.add((char) i);
-			}
+			if ((char) i != '0') chars.add((char) i);
 		}
 		charSet = new char[chars.size()];
 		for (int i = 0; i < chars.size(); i++) {

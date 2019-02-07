@@ -83,15 +83,13 @@ public class Controller_Save implements Initializable {
 			} catch (IOException ex) {
 				System.err.println("failed to save");
 			}
+			SaveWindow.close();
 		});
 	}
 
 	private void checkSaveButtonElighibility() {
-		if (infoValid()) {
-			saveB.setDisable(false);
-		} else {
-			saveB.setDisable(true);
-		}
+		if (infoValid()) saveB.setDisable(false);
+		else saveB.setDisable(true);
 	}
 
 	private boolean codeValid() {
