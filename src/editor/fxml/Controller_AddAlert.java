@@ -37,22 +37,19 @@ public class Controller_AddAlert implements Initializable {
 	private void setupComboBox() {
 		type.getItems().addAll(Arrays.asList(Alert.Type.values()));
 		type.getSelectionModel().selectFirst();
-		type.setCellFactory(new Callback<ListView<Alert.Type>, ListCell<Alert.Type>>() {
-			@Override
-			public ListCell<Alert.Type> call(ListView<Alert.Type> param) {
-				ListCell<Alert.Type> cell = new ListCell<Alert.Type>(){
-					@Override
-					protected void updateItem(Alert.Type item, boolean empty) {
-						super.updateItem(item, empty); 
-						if (empty|| item==null) return;
-						
-						setGraphic(new ImageView(item.getAlertImage()));
-						setText(item.name());
-					}
+		type.setCellFactory((ListView<Alert.Type> param) -> {
+			ListCell<Alert.Type> cell = new ListCell<Alert.Type>(){
+				@Override
+				protected void updateItem(Alert.Type item, boolean empty) {
+					super.updateItem(item, empty);
+					if (empty|| item==null) return;
 					
-				};
-				return cell;
-			}
+					setGraphic(new ImageView(item.getAlertImage()));
+					setText(item.name());
+				}
+				
+			};
+			return cell;
 		});
 	}
 
@@ -60,7 +57,13 @@ public class Controller_AddAlert implements Initializable {
 		add.setOnAction(e -> {
 			Alert created = new Alert(type.getSelectionModel().getSelectedItem(), text.getText());
 			AddEventWindow.getController().addEventScript(created);
+			Alert.closeEditorWindow();
 		});
+	}
+	
+	public void reset() {
+		type.getSelectionModel().selectFirst();
+		text.clear();
 	}
 	
 }

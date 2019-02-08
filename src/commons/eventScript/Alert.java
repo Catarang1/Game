@@ -22,9 +22,14 @@ public class Alert implements EventScript{
 		this.type = type;
 		this.text = text;
 	}
+	
+	public static void closeEditorWindow() {
+		AddAlertWindow.close();
+	}
 
 	public static void showEditorWindow() {
-		new AddAlertWindow().show();
+		AddAlertWindow.reset();
+		AddAlertWindow.show();
 	}
 
 	@Override
@@ -41,6 +46,13 @@ public class Alert implements EventScript{
 	public int getOrder() {
 		return 0;
 	}
+
+	@Override
+	public String toString() {
+		return "Add " + type + " alert, text: " + text;
+	}
+	
+	
 	
 	private static class AddAlertWindow{
 		static FXMLLoader loader = new FXMLLoader();
@@ -49,7 +61,7 @@ public class Alert implements EventScript{
 		static Scene scene;
 		static Stage stage = new Stage();
 		
-		public AddAlertWindow() {
+		static {
 			loader = new FXMLLoader(Controller_AddEvent.class.getResource("editor_create_alert.fxml"));
 			try {
 				root = loader.load();
@@ -59,13 +71,23 @@ public class Alert implements EventScript{
 			controller = loader.getController();
 			scene = new Scene(root);
 			stage.setScene(scene);
-			stage.initModality(Modality.APPLICATION_MODAL);
+			if (stage.getModality()!=Modality.APPLICATION_MODAL) {
+				stage.initModality(Modality.APPLICATION_MODAL);
+			}
 			stage.setTitle("Add Alert Script");
 			stage.show();
 		}
 		
-		public void show() {
+		public static void show() {
 			stage.show();
+		}
+		
+		public static void close() {
+			stage.close();
+		}
+		
+		public static void reset() {	
+		controller.reset();
 		}
 		
 	}

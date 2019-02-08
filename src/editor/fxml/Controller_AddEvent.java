@@ -3,16 +3,13 @@ package editor.fxml;
 import commons.*;
 import commons.eventScript.*;
 import commons.eventScript.Alert;
+import editor.*;
 import java.net.URL;
 import java.util.*;
-import javafx.beans.property.*;
-import javafx.beans.value.*;
 import javafx.event.*;
 import javafx.fxml.*;
 import javafx.scene.control.*;
-import javafx.scene.control.cell.*;
 import javafx.scene.layout.*;
-import javafx.util.*;
 
 /**
  * FXML Controller class
@@ -36,9 +33,11 @@ public class Controller_AddEvent implements Initializable {
 	@FXML private ListView<EventScript> eventScriptList;
 	@FXML private VBox missingFlagsWrapper;
 	@FXML private VBox presentFlagsWrapper;
+	@FXML private Button deleteScriptB;
 
 	private Set<Flag> selectedPresent = new HashSet<>();
 	private Set<Flag> selectedAbsent = new HashSet<>();
+	
 	
 	// TODO add windows for individual script types
 
@@ -46,7 +45,9 @@ public class Controller_AddEvent implements Initializable {
 	public void initialize(URL url, ResourceBundle rb) {
 		setupFlagLists();
 		setupAddButton();
+		setupDeleteButton();
 		setupScriptAddition();
+		setupCancelButton();
 	}
 
 	private void setupAddButton() {
@@ -95,6 +96,17 @@ public class Controller_AddEvent implements Initializable {
 	
 	public void addEventScript(EventScript e) {
 		eventScriptList.getItems().add(e);
+	}
+
+	private void setupDeleteButton() {
+		deleteScriptB.setOnAction(e -> {
+			EventScript selected = eventScriptList.getSelectionModel().getSelectedItem();
+			eventScriptList.getItems().remove(selected);
+		});
+	}
+
+	private void setupCancelButton() {
+		cancelB.setOnAction(e -> AddEventWindow.close());
 	}
 
 }

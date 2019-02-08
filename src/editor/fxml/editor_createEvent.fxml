@@ -46,16 +46,21 @@
                </padding></VBox>
          </content>
       </ScrollPane>
-      <MenuButton fx:id="addScriptMenu" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Add Event Script" VBox.vgrow="NEVER">
-        <items>
-          <MenuItem fx:id="addDialog" mnemonicParsing="false" text="Add Dialog" />
-          <MenuItem fx:id="addSwitchBoard" mnemonicParsing="false" text="Add Board Switch" />
-            <MenuItem fx:id="addFlagGain" mnemonicParsing="false" text="Add Flag Gain" />
-            <MenuItem fx:id="addFlagLost" mnemonicParsing="false" text="Add Flag Lost" />
-            <MenuItem fx:id="addTeleport" mnemonicParsing="false" text="Add Teleport" />
-            <MenuItem fx:id="addAlert" mnemonicParsing="false" text="Add Alert" />
-        </items>
-      </MenuButton>
+      <HBox spacing="10.0" VBox.vgrow="NEVER">
+         <children>
+            <Button fx:id="deleteScriptB" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Delete Script" HBox.hgrow="ALWAYS" />
+            <MenuButton fx:id="addScriptMenu" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Add Event Script" HBox.hgrow="ALWAYS">
+              <items>
+                <MenuItem fx:id="addDialog" mnemonicParsing="false" text="Add Dialog" />
+                <MenuItem fx:id="addSwitchBoard" mnemonicParsing="false" text="Add Board Switch" />
+                  <MenuItem fx:id="addFlagGain" mnemonicParsing="false" text="Add Flag Gain" />
+                  <MenuItem fx:id="addFlagLost" mnemonicParsing="false" text="Add Flag Lost" />
+                  <MenuItem fx:id="addTeleport" mnemonicParsing="false" text="Add Teleport" />
+                  <MenuItem fx:id="addAlert" mnemonicParsing="false" text="Add Alert" />
+              </items>
+            </MenuButton>
+         </children>
+      </HBox>
       <ListView fx:id="eventScriptList" prefHeight="150.0" prefWidth="200.0" />
       <HBox spacing="20.0">
          <children>
