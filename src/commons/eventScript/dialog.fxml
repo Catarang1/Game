@@ -25,7 +25,7 @@
       <HBox fx:id="buttonsRow" alignment="BASELINE_LEFT" spacing="20.0">
          <children>
             <Button fx:id="cancel" cancelButton="true" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Cancel" HBox.hgrow="ALWAYS" />
-            <Button fx:id="add" defaultButton="true" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Add" HBox.hgrow="ALWAYS" />
+            <Button fx:id="addScript" defaultButton="true" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Add" HBox.hgrow="ALWAYS" />
          </children>
          <VBox.margin>
             <Insets />

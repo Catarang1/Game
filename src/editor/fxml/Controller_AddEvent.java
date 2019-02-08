@@ -92,12 +92,12 @@ public class Controller_AddEvent implements Initializable {
 	}
 
 	private void setupScriptAddition() {
-		addAlert.setOnAction(e -> new CreateEventScriptWindow(getLinkToFXML("editor_create_alert.fxml")));
-		addDialog.setOnAction(e -> new CreateEventScriptWindow(getLinkToFXML("editor_create_dialog.fxml")));
-		addFlagGain.setOnAction(e -> new CreateEventScriptWindow(getLinkToFXML("editor_create_flagAdd.fxml")));
-		addFlagLost.setOnAction(e -> new CreateEventScriptWindow(getLinkToFXML("editor_create_flagRemove.fxml")));
-		addTeleport.setOnAction(e -> new CreateEventScriptWindow(getLinkToFXML("editor_create_teleport.fxml")));
-		addSwitchBoard.setOnAction(e -> new CreateEventScriptWindow(getLinkToFXML("editor_create_switchBoard.fxml")));
+		addAlert.setOnAction(e -> new CreateEventScriptWindow(getLinkToFXML("alert.fxml")));
+		addDialog.setOnAction(e -> new CreateEventScriptWindow(getLinkToFXML("dialog.fxml")));
+		addFlagGain.setOnAction(e -> new CreateEventScriptWindow(getLinkToFXML("flagAdd.fxml")));
+		addFlagLost.setOnAction(e -> new CreateEventScriptWindow(getLinkToFXML("flagRemove.fxml")));
+		addTeleport.setOnAction(e -> new CreateEventScriptWindow(getLinkToFXML("teleport.fxml")));
+		addSwitchBoard.setOnAction(e -> new CreateEventScriptWindow(getLinkToFXML("switchBoard.fxml")));
 	}
 	
 	private URL getLinkToFXML(String name) {
@@ -106,13 +106,13 @@ public class Controller_AddEvent implements Initializable {
 	}
 	
 	public void addEventScript(EventScript e) {
-		if (e.isUnique()) {
-			for (Node n:eventScriptList.getChildrenUnmodifiable()) {
-				if (n.getClass().equals(e.getClass())) break; return;
-			}
-		} else {
+//		if (e.isUnique()) {
+//			for (Node n:eventScriptList.getChildrenUnmodifiable()) {
+//				if (n.getClass().equals(e.getClass())) break; return;
+//			}
+//		} else {
 			eventScriptList.getItems().add(e);
-		}
+//		}
 		
 	}
 

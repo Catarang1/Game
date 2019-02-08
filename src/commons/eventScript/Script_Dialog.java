@@ -42,6 +42,11 @@ public class Script_Dialog implements EventScript, Serializable{
 	public int getOrder() {
 		return 10;
 	}
+
+	@Override
+	public String toString() {
+		return "Dialog Script with " + dialogLines.length + " lines";
+	}
 	
 	
 
