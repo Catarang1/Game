@@ -6,21 +6,21 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="440.0" spacing="10.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<VBox fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="440.0" spacing="10.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="commons.eventScript.Controller_AddTeleport">
    <padding>
       <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
    </padding>
    <children>
       <VBox spacing="10.0">
          <children>
-            <TextField promptText="Position X" />
-            <TextField promptText="Position Y" />
+            <TextField promptText="Position X" fx:id="x" />
+            <TextField fx:id="y" promptText="Position Y" />
          </children>
       </VBox>
       <HBox fx:id="buttonsRow" alignment="BASELINE_LEFT" spacing="20.0">
          <children>
-            <Button cancelButton="true" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Cancel" HBox.hgrow="ALWAYS" />
-            <Button defaultButton="true" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Add" HBox.hgrow="ALWAYS" />
+            <Button fx:id="cancel" cancelButton="true" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Cancel" HBox.hgrow="ALWAYS" />
+            <Button fx:id="add" defaultButton="true" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Add" HBox.hgrow="ALWAYS" />
          </children>
          <VBox.margin>
             <Insets />

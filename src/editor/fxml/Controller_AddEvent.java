@@ -2,12 +2,13 @@ package editor.fxml;
 
 import commons.*;
 import commons.eventScript.*;
-import commons.eventScript.Alert;
+import commons.eventScript.Script_Alert;
 import editor.*;
 import java.net.URL;
 import java.util.*;
 import javafx.event.*;
 import javafx.fxml.*;
+import javafx.scene.*;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
 
@@ -91,11 +92,28 @@ public class Controller_AddEvent implements Initializable {
 	}
 
 	private void setupScriptAddition() {
-		addAlert.setOnAction(e -> Alert.showEditorWindow());
+		addAlert.setOnAction(e -> new CreateEventScriptWindow(getLinkToFXML("editor_create_alert.fxml")));
+		addDialog.setOnAction(e -> new CreateEventScriptWindow(getLinkToFXML("editor_create_dialog.fxml")));
+		addFlagGain.setOnAction(e -> new CreateEventScriptWindow(getLinkToFXML("editor_create_flagAdd.fxml")));
+		addFlagLost.setOnAction(e -> new CreateEventScriptWindow(getLinkToFXML("editor_create_flagRemove.fxml")));
+		addTeleport.setOnAction(e -> new CreateEventScriptWindow(getLinkToFXML("editor_create_teleport.fxml")));
+		addSwitchBoard.setOnAction(e -> new CreateEventScriptWindow(getLinkToFXML("editor_create_switchBoard.fxml")));
+	}
+	
+	private URL getLinkToFXML(String name) {
+		URL toReturn = EventScript.class.getResource(name);
+		return toReturn;
 	}
 	
 	public void addEventScript(EventScript e) {
-		eventScriptList.getItems().add(e);
+		if (e.isUnique()) {
+			for (Node n:eventScriptList.getChildrenUnmodifiable()) {
+				if (n.getClass().equals(e.getClass())) break; return;
+			}
+		} else {
+			eventScriptList.getItems().add(e);
+		}
+		
 	}
 
 	private void setupDeleteButton() {

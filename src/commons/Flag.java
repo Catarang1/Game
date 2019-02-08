@@ -8,7 +8,7 @@ import javafx.beans.value.*;
  *
  * @author Jan
  */
-public enum Flag implements Serializable{
+public enum Flag{
 	
 	Default,
 	Flag_A,
