@@ -7,53 +7,60 @@
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox prefWidth="350.0" spacing="10.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<VBox prefWidth="350.0" spacing="10.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="editor.fxml.Controller_AddEvent">
    <children>
-      <HBox spacing="20.0">
+      <HBox alignment="CENTER_LEFT" spacing="20.0">
          <VBox.margin>
             <Insets />
          </VBox.margin>
          <children>
-            <HBox alignment="BASELINE_LEFT" spacing="20.0" HBox.hgrow="ALWAYS">
-               <children>
-                  <Label text="trigger X" />
-                  <TextField prefWidth="40.0" HBox.hgrow="ALWAYS" />
-               </children>
-            </HBox>
-            <HBox alignment="BASELINE_LEFT" spacing="20.0" HBox.hgrow="ALWAYS">
-               <children>
-                  <Label text="trigger Y" />
-                  <TextField prefWidth="40.0" HBox.hgrow="ALWAYS" />
-               </children>
-            </HBox>
+            <Label text="trigger X" />
+            <TextField fx:id="triggerX" maxWidth="1.7976931348623157E308" prefWidth="40.0" HBox.hgrow="ALWAYS" />
+            <Label text="trigger Y" />
+            <TextField fx:id="triggerY" maxWidth="1.7976931348623157E308" prefWidth="40.0" HBox.hgrow="ALWAYS" />
          </children>
       </HBox>
-      <CheckBox mnemonicParsing="false" text="triggered by player" />
+      <CheckBox fx:id="triggeredByPlayer" mnemonicParsing="false" text="triggered by player" />
       <Separator prefWidth="200.0" />
       <Label text="player is missing flags:" />
-      <ListView prefHeight="125.0" prefWidth="200.0" />
+      <ScrollPane hbarPolicy="NEVER" prefHeight="125.0" prefWidth="200.0">
+         <content>
+            <VBox fx:id="missingFlagsWrapper" spacing="5.0">
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding></VBox>
+         </content>
+      </ScrollPane>
       <Label text="player has flags:" />
-      <ListView prefHeight="125.0" prefWidth="200.0" />
-      <MenuButton maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Add Event Script" VBox.vgrow="NEVER">
+      <ScrollPane hbarPolicy="NEVER" prefHeight="125.0" prefWidth="200.0">
+         <content>
+            <VBox fx:id="presentFlagsWrapper" spacing="5.0">
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding></VBox>
+         </content>
+      </ScrollPane>
+      <MenuButton fx:id="addScriptMenu" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Add Event Script" VBox.vgrow="NEVER">
         <items>
-          <MenuItem mnemonicParsing="false" text="Add Dialog" />
-          <MenuItem mnemonicParsing="false" text="Add Board Switch" />
-            <MenuItem mnemonicParsing="false" text="Add Flag Gain" />
-            <MenuItem mnemonicParsing="false" text="Add Flag Lost" />
-            <MenuItem mnemonicParsing="false" text="Add Teleport" />
-            <MenuItem mnemonicParsing="false" text="Add Alert" />
+          <MenuItem fx:id="addDialog" mnemonicParsing="false" text="Add Dialog" />
+          <MenuItem fx:id="addSwitchBoard" mnemonicParsing="false" text="Add Board Switch" />
+            <MenuItem fx:id="addFlagGain" mnemonicParsing="false" text="Add Flag Gain" />
+            <MenuItem fx:id="addFlagLost" mnemonicParsing="false" text="Add Flag Lost" />
+            <MenuItem fx:id="addTeleport" mnemonicParsing="false" text="Add Teleport" />
+            <MenuItem fx:id="addAlert" mnemonicParsing="false" text="Add Alert" />
         </items>
       </MenuButton>
-      <ListView prefHeight="150.0" prefWidth="200.0" />
+      <ListView fx:id="eventScriptList" prefHeight="150.0" prefWidth="200.0" />
       <HBox spacing="20.0">
          <children>
-            <Button cancelButton="true" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Cancel" HBox.hgrow="ALWAYS" />
-            <Button defaultButton="true" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Add" HBox.hgrow="ALWAYS" />
+            <Button fx:id="cancelB" cancelButton="true" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Cancel" HBox.hgrow="ALWAYS" />
+            <Button fx:id="addB" defaultButton="true" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Add" HBox.hgrow="ALWAYS" />
          </children>
       </HBox>
    </children>

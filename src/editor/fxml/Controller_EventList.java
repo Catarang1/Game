@@ -36,7 +36,7 @@ public class Controller_EventList implements Initializable {
 		});
 		
 		createB.setOnAction(e -> {
-			//TODO add fx
+			AddEventWindow.show();
 		});
 		
 		removeB.setOnAction(e -> {
