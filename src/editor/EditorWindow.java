@@ -25,8 +25,8 @@ public class EditorWindow extends Application {
 	public void start(Stage primaryStage) throws IOException {
 		
 		Coords c = new Coords(0, 0);
-		Set<String> flags = new HashSet<>();
-		flags.add("something");
+		Set<Flag> flags = new HashSet<>();
+		flags.add(Flag.Default);
 		List<EventScript> scripts = new ArrayList<>();
 		scripts.add(new EventScript() {
 			@Override

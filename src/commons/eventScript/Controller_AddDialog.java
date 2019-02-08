@@ -24,9 +24,6 @@ public class Controller_AddDialog implements Initializable {
 	@FXML private Button cancel;
 	@FXML private Button addScript;
 
-	/**
-	 * Initializes the controller class.
-	 */
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
 		add.setOnAction(e -> {

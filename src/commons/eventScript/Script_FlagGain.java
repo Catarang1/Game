@@ -29,6 +29,13 @@ public class Script_FlagGain implements EventScript, Serializable{
 	public int getOrder() {
 		return 1;
 	}
+
+	@Override
+	public String toString() {
+		return "Flag Gain " + toBeGained;
+	}
+	
+	
 	
 	
 

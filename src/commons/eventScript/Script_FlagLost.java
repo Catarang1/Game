@@ -29,4 +29,9 @@ public class Script_FlagLost implements EventScript, Serializable{
 	public int getOrder() {
 		return 2;
 	}
+	
+	@Override
+	public String toString() {
+		return "Flag Lost " + toBeLost;
+	}
 }

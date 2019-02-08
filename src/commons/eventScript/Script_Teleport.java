@@ -1,11 +1,8 @@
 
 package commons.eventScript;
 
-// @author Jan
-
 import commons.*;
 import java.io.*;
-
  
 public class Script_Teleport implements EventScript, Serializable{
 	
@@ -28,5 +25,10 @@ public class Script_Teleport implements EventScript, Serializable{
 	@Override
 	public int getOrder() {
 		return 0;
+	}
+	
+	@Override
+	public String toString() {
+		return "Teleport to " + destination;
 	}
 }

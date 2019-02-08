@@ -78,15 +78,6 @@ public class Board implements Serializable {
 
 	public void setCode(String code) {
 		if (code.matches("[0-9]{4}")) this.code = code;
-		else {
-		/* TODO fix
-			
-			show some kind of error in Editor (game engine does not assign board codes)
-			
-		*/
-		
-			
-		}
 	}
 
 	public String getTitle() {

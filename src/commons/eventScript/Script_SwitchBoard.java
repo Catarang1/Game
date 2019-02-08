@@ -1,10 +1,7 @@
 
 package commons.eventScript;
 
-// @author Jan
-
 import java.io.*;
-
  
 public class Script_SwitchBoard implements EventScript, Serializable{
 	
@@ -27,5 +24,10 @@ public class Script_SwitchBoard implements EventScript, Serializable{
 	@Override
 	public int getOrder() {
 		return 11;
+	}
+	
+	@Override
+	public String toString() {
+		return "Switch to Board " + boardCode;
 	}
 }

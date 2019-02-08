@@ -9,29 +9,19 @@ import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.stage.*;
 
-/**
- * FXML Controller class
- *
- * @author Jan
- */
 public class Controller_RemoveFlag implements Initializable {
 
-	@FXML
-	private VBox root;
-	@FXML
-	private ComboBox<Flag> flagSelection;
-	@FXML
-	private HBox buttonsRow;
-	@FXML
-	private Button cancel;
-	@FXML
-	private Button add;
+	@FXML private VBox root;
+	@FXML private ComboBox<Flag> flagSelection;
+	@FXML private HBox buttonsRow;
+	@FXML private Button cancel;
+	@FXML private Button add;
 
-	/**
-	 * Initializes the controller class.
-	 */
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
+		
+		flagSelection.getItems().addAll(Flag.values());
+		
 		add.setOnAction(e -> {
 			EventScript created = new Script_FlagLost(flagSelection.getSelectionModel().getSelectedItem());
 			AddEventWindow.getController().addEventScript(created);

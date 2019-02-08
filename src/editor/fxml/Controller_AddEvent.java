@@ -2,21 +2,15 @@ package editor.fxml;
 
 import commons.*;
 import commons.eventScript.*;
-import commons.eventScript.Script_Alert;
 import editor.*;
 import java.net.URL;
 import java.util.*;
 import javafx.event.*;
 import javafx.fxml.*;
-import javafx.scene.*;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
+import javafx.stage.*;
 
-/**
- * FXML Controller class
- *
- * @author Jan
- */
 public class Controller_AddEvent implements Initializable {
 
 	@FXML private TextField triggerX;
@@ -38,9 +32,6 @@ public class Controller_AddEvent implements Initializable {
 
 	private Set<Flag> selectedPresent = new HashSet<>();
 	private Set<Flag> selectedAbsent = new HashSet<>();
-	
-	
-	// TODO add windows for individual script types
 
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
@@ -56,12 +47,21 @@ public class Controller_AddEvent implements Initializable {
 			int x = Integer.parseInt(triggerX.getText());
 			int y = Integer.parseInt(triggerY.getText());
 			boolean playerTriggered = triggeredByPlayer.isSelected();
+			Coords trigger = new Coords(x, y);
 			
 			System.out.println("absent flags:");
 			selectedAbsent.forEach(System.out::println);
 			System.out.println("\n");
 			System.out.println("present flags");
 			selectedPresent.forEach(System.out::println);
+			ArrayList<EventScript> events = new ArrayList<>();
+			eventScriptList.getItems().forEach(t -> events.add(t));
+			GameEvent created = new GameEvent(trigger, playerTriggered, selectedAbsent, selectedPresent, events);
+			EditorWindow.getEventsToSave().add(created);
+			
+			reset();
+			Stage stage = (Stage) missingFlagsWrapper.getScene().getWindow();
+			stage.close();
 		});
 	}
 
@@ -106,14 +106,7 @@ public class Controller_AddEvent implements Initializable {
 	}
 	
 	public void addEventScript(EventScript e) {
-//		if (e.isUnique()) {
-//			for (Node n:eventScriptList.getChildrenUnmodifiable()) {
-//				if (n.getClass().equals(e.getClass())) break; return;
-//			}
-//		} else {
-			eventScriptList.getItems().add(e);
-//		}
-		
+		eventScriptList.getItems().add(e);		
 	}
 
 	private void setupDeleteButton() {
@@ -126,5 +119,19 @@ public class Controller_AddEvent implements Initializable {
 	private void setupCancelButton() {
 		cancelB.setOnAction(e -> AddEventWindow.close());
 	}
-
+	
+	private void reset() {
+		triggerX.clear();
+		triggerY.clear();
+		
+		missingFlagsWrapper.getChildren().clear();
+		presentFlagsWrapper.getChildren().clear();
+		
+		selectedPresent.clear();
+		selectedAbsent.clear();
+		
+		setupFlagLists();
+		
+		eventScriptList.getItems().clear();		
+	}
 }

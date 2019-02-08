@@ -4,16 +4,16 @@ import commons.eventScript.EventScript;
 import java.io.*;
 import java.util.*;
 
-public class GameEvent implements Serializable {
+public final class GameEvent implements Serializable {
 
 	private Coords triggerPosition;
 	private boolean playerTriggered = true;
-	private Set<String> absentFlags = null;
-	private Set<String> presentFlags = null;
-	private List<EventScript> scripts = new ArrayList<>();
+	private Set<Flag> absentFlags;
+	private Set<Flag> presentFlags;
+	private List<EventScript> scripts;
 	private static Comparator<EventScript> comparator = (EventScript o1, EventScript o2) -> o2.getOrder() - o1.getOrder();
 
-	public GameEvent(Coords triggerPosition, boolean playerTriggered, Set<String> absentFlags, Set<String> presentFlags, List<EventScript> scripts) {
+	public GameEvent(Coords triggerPosition, boolean playerTriggered, Set<Flag> absentFlags, Set<Flag> presentFlags, List<EventScript> scripts) {
 		setTriggerPosition(triggerPosition);
 		setPlayerTriggered(playerTriggered);
 		setAbsentFlags(absentFlags);
@@ -99,11 +99,11 @@ public class GameEvent implements Serializable {
 		this.triggerPosition = triggerPosition;
 	}
 
-	public void setAbsentFlags(Set<String> absentFlags) {
+	public void setAbsentFlags(Set<Flag> absentFlags) {
 		this.absentFlags = absentFlags;
 	}
 
-	public void setPresentFlags(Set<String> presentFlags) {
+	public void setPresentFlags(Set<Flag> presentFlags) {
 		this.presentFlags = presentFlags;
 	}
 
@@ -115,11 +115,11 @@ public class GameEvent implements Serializable {
 		this.scripts = scripts;
 	}
 
-	public Set<String> getAbsentFlags() {
+	public Set<Flag> getAbsentFlags() {
 		return absentFlags;
 	}
 
-	public Set<String> getPresentFlags() {
+	public Set<Flag> getPresentFlags() {
 		return presentFlags;
 	}
 

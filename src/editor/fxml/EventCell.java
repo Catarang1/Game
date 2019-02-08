@@ -4,6 +4,7 @@ package editor.fxml;
 import commons.*;
 import java.io.*;
 import javafx.fxml.*;
+import javafx.geometry.*;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.scene.shape.*;
@@ -23,27 +24,27 @@ public class EventCell extends ListCell<GameEvent> {
 	private String svgPathComputer = "M17.5,0.5c-9.4,0-17,7.6-17,17s7.6,17,17,17s17-7.6,17-17S26.9,0.5,17.5,0.5z M27.8,21.2c0,0.6-0.5,1.1-1.1,1.1H20v2.2h2.7c0.5,0,0.8,0.4,0.8,0.8v0.9c0,0.5-0.4,0.8-0.8,0.8H12.3c-0.5,0-0.8-0.4-0.8-0.8v-0.9c0-0.5,0.4-0.8,0.8-0.8h2.7v-2.2H8.3c-0.6,0-1.1-0.5-1.1-1.1v-11c0-0.9,0.7-1.7,1.7-1.7h17.8c0.6,0,1.1,0.5,1.1,1.1V21.2zM17.5,0.5c-9.4,0-17,7.6-17,17s7.6,17,17,17s17-7.6,17-17S26.9,0.5,17.5,0.5z M27.8,21.2c0,0.6-0.5,1.1-1.1,1.1H20v2.2h2.7c0.5,0,0.8,0.4,0.8,0.8v0.9c0,0.5-0.4,0.8-0.8,0.8H12.3c-0.5,0-0.8-0.4-0.8-0.8v-0.9c0-0.5,0.4-0.8,0.8-0.8h2.7v-2.2H8.3c-0.6,0-1.1-0.5-1.1-1.1v-11c0-0.9,0.7-1.7,1.7-1.7h17.8c0.6,0,1.1,0.5,1.1,1.1V21.2z";
 	private FXMLLoader loader;
 	
+	
 
 	@Override
 	protected void updateItem(GameEvent item, boolean empty) {
 		super.updateItem(item, empty);
-
-		if (empty || item == null) {
-			return;
-		}
-
 		setText(null);
 		setGraphic(null);
+		if (empty || item == null) return;
 
 		if (loader == null) {
-			loader = new FXMLLoader(EventCell.class.getResource("eventCell.fxml"));
+			loader = new FXMLLoader(getClass().getResource("eventCell.fxml"));
 			loader.setController(this);
-		}
-		
-		try {
-			loader.load();
-		} catch (IOException e) {
-			System.err.println("failed to load Cell FXML");
+			
+			try {
+				loader.load();
+			} catch (IOException e) {
+				System.err.println(e.getCause());
+				System.err.println(e.getMessage());
+				e.printStackTrace();
+				System.err.println("failed to load Cell FXML");
+			}
 		}
 		
 		triggerXtext.setText(item.getTriggerPosition().getPosX() + "");
