@@ -1,4 +1,4 @@
-package editor.fxml;
+package commons.eventScript;
 
 import commons.eventScript.*;
 import commons.eventScript.Alert;
@@ -55,7 +55,7 @@ public class Controller_AddAlert implements Initializable {
 
 	private void setupAddButton() {
 		add.setOnAction(e -> {
-			Alert created = new Alert(type.getSelectionModel().getSelectedItem(), text.getText());
+			EventScript created = new Alert(type.getSelectionModel().getSelectedItem(), text.getText());
 			AddEventWindow.getController().addEventScript(created);
 			Alert.closeEditorWindow();
 		});
