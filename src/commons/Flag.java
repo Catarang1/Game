@@ -17,21 +17,4 @@ public enum Flag implements Serializable{
 	Flag_D,
 	Flag_E;
 	
-	private final BooleanProperty isSelected = new SimpleBooleanProperty();
-
-	public boolean isIsSelected() {
-		return isSelected.get();
-	}
-
-	public void setIsSelected(boolean value) {
-		isSelected.set(value);
-	}
-
-	public BooleanProperty isSelectedProperty() {
-		return isSelected;
-	}
-	
-	
-	
-	
 }

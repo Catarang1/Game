@@ -41,6 +41,12 @@ public class AddEventWindow {
 	public static void close() {
 		stage.close();
 	}
+
+	public static Controller_AddEvent getController() {
+		return controller;
+	}
+	
+	
 	
 
 }

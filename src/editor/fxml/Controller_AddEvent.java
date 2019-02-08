@@ -2,6 +2,7 @@ package editor.fxml;
 
 import commons.*;
 import commons.eventScript.*;
+import commons.eventScript.Alert;
 import java.net.URL;
 import java.util.*;
 import javafx.beans.property.*;
@@ -45,13 +46,20 @@ public class Controller_AddEvent implements Initializable {
 	public void initialize(URL url, ResourceBundle rb) {
 		setupFlagLists();
 		setupAddButton();
+		setupScriptAddition();
 	}
 
 	private void setupAddButton() {
-		addB.setOnAction(e -> {
+		addB.setOnAction(ev -> {
 			int x = Integer.parseInt(triggerX.getText());
 			int y = Integer.parseInt(triggerY.getText());
 			boolean playerTriggered = triggeredByPlayer.isSelected();
+			
+			System.out.println("absent flags:");
+			selectedAbsent.forEach(System.out::println);
+			System.out.println("\n");
+			System.out.println("present flags");
+			selectedPresent.forEach(System.out::println);
 		});
 	}
 
@@ -79,6 +87,14 @@ public class Controller_AddEvent implements Initializable {
 			missingFlagsWrapper.getChildren().add(missingBox);
 			presentFlagsWrapper.getChildren().add(presentBox);
 		}
+	}
+
+	private void setupScriptAddition() {
+		addAlert.setOnAction(e -> Alert.showEditorWindow());
+	}
+	
+	public void addEventScript(EventScript e) {
+		eventScriptList.getItems().add(e);
 	}
 
 }

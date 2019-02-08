@@ -28,24 +28,11 @@ public class Controller_EventList implements Initializable {
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
 		list.setItems(EditorWindow.getEventsToSave());
-		list.setCellFactory(new Callback<ListView<GameEvent>, ListCell<GameEvent>>() {
-			@Override
-			public ListCell<GameEvent> call(ListView<GameEvent> param) {
-				return new EventCell();
-			}
-		});
+		list.setCellFactory((ListView<GameEvent> param) -> new EventCell());
 		
-		createB.setOnAction(e -> {
-			AddEventWindow.show();
-		});
-		
-		removeB.setOnAction(e -> {
-			list.getItems().remove(list.getSelectionModel().getSelectedItem());
-		});
-		
-		closeB.setOnAction(e -> {
-			EventsWindow.close();
-		});
+		createB.setOnAction(e ->  AddEventWindow.show());
+		removeB.setOnAction(e -> list.getItems().remove(list.getSelectionModel().getSelectedItem()));
+		closeB.setOnAction(e -> EventsWindow.close());
 	}	
 	
 }
