@@ -39,14 +39,12 @@ public class Controller_AddEvent implements Initializable {
 	private Set<Flag> selectedPresent = new HashSet<>();
 	private Set<Flag> selectedAbsent = new HashSet<>();
 	
+	// TODO add windows for individual script types
 
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
 		setupFlagLists();
 		setupAddButton();
-		cancelB.setOnAction(e -> {
-			selectedAbsent.forEach(System.out::println);
-		});
 	}
 
 	private void setupAddButton() {
