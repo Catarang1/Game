@@ -29,7 +29,7 @@ public class Script_Alert implements EventScript {
 
 	@Override
 	public String toString() {
-		return "Add " + type + " alert, text: " + text;
+		return "Alert " + type + " text: " + text;
 	}
 
 	private static final String path = "/resources/alertTypes/";

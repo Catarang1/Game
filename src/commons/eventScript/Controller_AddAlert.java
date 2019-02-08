@@ -1,7 +1,5 @@
 package commons.eventScript;
 
-import commons.eventScript.*;
-import commons.eventScript.Script_Alert;
 import editor.*;
 import java.net.URL;
 import java.util.*;
@@ -11,7 +9,6 @@ import javafx.scene.control.*;
 import javafx.scene.image.*;
 import javafx.scene.layout.*;
 import javafx.stage.*;
-import javafx.util.*;
 
 /**
  * FXML Controller class
@@ -63,11 +60,6 @@ public class Controller_AddAlert implements Initializable {
 				stage.close();
 			}
 		});
-	}
-
-	public void reset() {
-		type.getSelectionModel().selectFirst();
-		text.clear();
 	}
 
 }
