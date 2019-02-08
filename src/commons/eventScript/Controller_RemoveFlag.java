@@ -1,11 +1,13 @@
 package commons.eventScript;
 
 import commons.*;
+import editor.*;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.*;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
+import javafx.stage.*;
 
 /**
  * FXML Controller class
@@ -30,7 +32,17 @@ public class Controller_RemoveFlag implements Initializable {
 	 */
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
-		// TODO
+		add.setOnAction(e -> {
+			EventScript created = new Script_FlagLost(flagSelection.getSelectionModel().getSelectedItem());
+			AddEventWindow.getController().addEventScript(created);
+			Stage stage = (Stage) root.getScene().getWindow();
+			stage.close();
+		});
+		
+		cancel.setOnAction(e -> {
+			Stage stage = (Stage) root.getScene().getWindow();
+			stage.close();
+		});
 	}	
 	
 }
