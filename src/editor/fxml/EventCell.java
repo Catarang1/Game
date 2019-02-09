@@ -4,7 +4,6 @@ package editor.fxml;
 import commons.*;
 import java.io.*;
 import javafx.fxml.*;
-import javafx.geometry.*;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.scene.shape.*;
@@ -40,10 +39,7 @@ public class EventCell extends ListCell<GameEvent> {
 			try {
 				loader.load();
 			} catch (IOException e) {
-				System.err.println(e.getCause());
-				System.err.println(e.getMessage());
 				e.printStackTrace();
-				System.err.println("failed to load Cell FXML");
 			}
 		}
 		
