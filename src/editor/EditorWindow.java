@@ -75,6 +75,10 @@ public class EditorWindow extends Application {
 	public static ObservableList<GameEvent> getEventsToSave() {
 		return eventsToSave;
 	}
+	
+	public static void addEvent(GameEvent event) {
+		eventsToSave.add(event);
+	}
 
 	
 }

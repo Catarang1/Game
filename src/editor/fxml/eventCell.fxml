@@ -22,55 +22,55 @@
          </HBox.margin></Rectangle>
       <GridPane hgap="5.0" prefHeight="50.0" prefWidth="283.0" HBox.hgrow="ALWAYS">
         <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="10.0" prefWidth="80.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="5.0" prefWidth="5.0" />
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="10.0" prefWidth="120.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="132.0" minWidth="5.0" prefWidth="5.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="0.0" prefWidth="30.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="10.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="5.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="10.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="132.0" minWidth="5.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="0.0" />
         </columnConstraints>
         <rowConstraints>
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Label prefHeight="21.0" prefWidth="76.0" text="TriggerX">
+            <Label prefHeight="21.0" prefWidth="76.0" text="Trigger X:" textFill="#727272">
                <font>
-                  <Font size="13.0" />
+                  <Font name="System Bold" size="13.0" />
                </font>
             </Label>
-            <Label text="TriggerX" GridPane.rowIndex="1">
+            <Label text="Trigger Y:" textFill="#727272" GridPane.rowIndex="1">
                <font>
-                  <Font size="13.0" />
+                  <Font name="System Bold" size="13.0" />
                </font>
             </Label>
-            <Label fx:id="triggerXtext" text="00" GridPane.columnIndex="1">
+            <Label fx:id="triggerXtext" text="00" textFill="#727272" GridPane.columnIndex="1">
                <font>
-                  <Font size="13.0" />
+                  <Font name="System Bold" size="13.0" />
                </font>
             </Label>
-            <Label fx:id="triggerYtext" text="00" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <Label fx:id="triggerYtext" text="00" textFill="#727272" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <font>
-                  <Font size="13.0" />
+                  <Font name="System Bold" size="13.0" />
                </font>
             </Label>
-            <Label prefHeight="21.0" prefWidth="95.0" text="Present Flags: " GridPane.columnIndex="2">
+            <Label prefHeight="21.0" prefWidth="95.0" text="Present Flags: " textFill="#727272" GridPane.columnIndex="2">
                <font>
-                  <Font size="13.0" />
+                  <Font name="System Bold" size="13.0" />
                </font>
             </Label>
-            <Label prefHeight="21.0" prefWidth="103.0" text="Absent Flags: " GridPane.columnIndex="2" GridPane.rowIndex="1">
+            <Label prefHeight="21.0" prefWidth="103.0" text="Absent Flags: " textFill="#727272" GridPane.columnIndex="2" GridPane.rowIndex="1">
                <font>
-                  <Font size="13.0" />
+                  <Font name="System Bold" size="13.0" />
                </font>
             </Label>
-            <Label fx:id="flagsPresentText" prefHeight="19.0" prefWidth="20.0" text="00" GridPane.columnIndex="3">
+            <Label fx:id="flagsPresentText" prefHeight="19.0" prefWidth="20.0" text="00" textFill="#727272" GridPane.columnIndex="3">
                <font>
-                  <Font size="13.0" />
+                  <Font name="System Bold" size="13.0" />
                </font>
             </Label>
-            <Label fx:id="flagsAbsentText" text="00" GridPane.columnIndex="3" GridPane.rowIndex="1">
+            <Label fx:id="flagsAbsentText" text="00" textFill="#727272" GridPane.columnIndex="3" GridPane.rowIndex="1">
                <font>
-                  <Font size="13.0" />
+                  <Font name="System Bold" size="13.0" />
                </font>
             </Label>
          </children>

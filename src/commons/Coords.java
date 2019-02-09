@@ -1,7 +1,4 @@
-
 package commons;
-
-// @author Jan
 
 import java.io.*;
 

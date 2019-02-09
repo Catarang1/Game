@@ -83,12 +83,16 @@ public final class GameEvent implements Serializable {
 		} else {
 			sb.append("no. abs. flags: 0");
 		}
+		
+		sb.append(" ** ");
 
 		if (presentFlags != null) {
-			sb.append(" no. abs. flags: " + presentFlags.size());
+			sb.append("no. abs. flags: " + presentFlags.size());
 		} else {
 			sb.append("no. pres. flags: 0");
 		}
+		
+		sb.append(" ** ");
 
 		sb.append("number of eventPoints: " + scripts.size()).append("\n");
 
@@ -118,9 +122,17 @@ public final class GameEvent implements Serializable {
 	public Set<Flag> getAbsentFlags() {
 		return absentFlags;
 	}
+	
+	public int getAbsentFlagsSize() {
+		return absentFlags.size();
+	}
 
 	public Set<Flag> getPresentFlags() {
 		return presentFlags;
+	}
+	
+	public int getPresentFlagsSize() {
+		return presentFlags.size();
 	}
 
 	public boolean isPlayerTriggered() {

@@ -1,6 +1,7 @@
 package editor.fxml;
 
 import commons.*;
+import commons.eventScript.*;
 import editor.*;
 import java.net.URL;
 import java.util.ResourceBundle;

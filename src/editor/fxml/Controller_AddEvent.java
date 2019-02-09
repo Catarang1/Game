@@ -30,8 +30,7 @@ public class Controller_AddEvent implements Initializable {
 	@FXML private VBox presentFlagsWrapper;
 	@FXML private Button deleteScriptB;
 
-	private Set<Flag> selectedPresent = new HashSet<>();
-	private Set<Flag> selectedAbsent = new HashSet<>();
+	
 
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
@@ -39,25 +38,31 @@ public class Controller_AddEvent implements Initializable {
 		setupAddButton();
 		setupDeleteButton();
 		setupScriptAddition();
-		setupCancelButton();
+		setupCancelButton();		
 	}
 
 	private void setupAddButton() {
 		addB.setOnAction(ev -> {
-			int x = Integer.parseInt(triggerX.getText());
-			int y = Integer.parseInt(triggerY.getText());
+			int x = Integer.parseInt(triggerX.getText().trim());
+			int y = Integer.parseInt(triggerY.getText().trim());
 			boolean playerTriggered = triggeredByPlayer.isSelected();
 			Coords trigger = new Coords(x, y);
 			
-			System.out.println("absent flags:");
-			selectedAbsent.forEach(System.out::println);
-			System.out.println("\n");
-			System.out.println("present flags");
-			selectedPresent.forEach(System.out::println);
+			Set<Flag> selectedPresent = new HashSet<>();
+			Set<Flag> selectedAbsent = new HashSet<>();
+			
+			for (int i = 0; i <presentFlagsWrapper.getChildren().size(); i++) {
+				CheckBox a = (CheckBox)missingFlagsWrapper.getChildren().get(i);
+				CheckBox b = (CheckBox)presentFlagsWrapper.getChildren().get(i);
+				if (a.isSelected()) selectedAbsent.add(Flag.valueOf(a.getText()));
+				if (b.isSelected()) selectedPresent.add(Flag.valueOf(b.getText()));
+			}
+			
 			ArrayList<EventScript> events = new ArrayList<>();
 			eventScriptList.getItems().forEach(t -> events.add(t));
+			
 			GameEvent created = new GameEvent(trigger, playerTriggered, selectedAbsent, selectedPresent, events);
-			EditorWindow.getEventsToSave().add(created);
+			EditorWindow.addEvent(created);
 			
 			reset();
 			Stage stage = (Stage) missingFlagsWrapper.getScene().getWindow();
@@ -65,29 +70,10 @@ public class Controller_AddEvent implements Initializable {
 		});
 	}
 
-	private void setupFlagLists() {
-		
-		EventHandler<ActionEvent> missingBoxAction = e -> {
-			CheckBox changed = (CheckBox)e.getSource();
-			if (changed.isSelected()) selectedAbsent.add(Flag.valueOf(changed.getText()));
-			else selectedAbsent.remove(Flag.valueOf(changed.getText()));
-		};
-		
-		EventHandler<ActionEvent> presentBoxAction = e -> {
-			CheckBox changed = (CheckBox)e.getSource();
-			if (changed.isSelected()) selectedPresent.add(Flag.valueOf(changed.getText()));
-			else selectedPresent.remove(Flag.valueOf(changed.getText()));
-		};
-		
+	private void setupFlagLists() {		
 		for(Flag flag:Flag.values()) {
-			CheckBox missingBox = new CheckBox(flag.name());
-			CheckBox presentBox = new CheckBox(flag.name());
-			
-			missingBox.setOnAction(missingBoxAction);
-			presentBox.setOnAction(presentBoxAction);
-			
-			missingFlagsWrapper.getChildren().add(missingBox);
-			presentFlagsWrapper.getChildren().add(presentBox);
+			missingFlagsWrapper.getChildren().add(new CheckBox(flag.name()));
+			presentFlagsWrapper.getChildren().add(new CheckBox(flag.name()));
 		}
 	}
 
@@ -126,9 +112,6 @@ public class Controller_AddEvent implements Initializable {
 		
 		missingFlagsWrapper.getChildren().clear();
 		presentFlagsWrapper.getChildren().clear();
-		
-		selectedPresent.clear();
-		selectedAbsent.clear();
 		
 		setupFlagLists();
 		
