@@ -41,7 +41,10 @@
                         <KeyCodeCombination alt="UP" code="L" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
                      </accelerator>
                   </MenuItem>
-                  <MenuItem fx:id="saveOption" mnemonicParsing="false" text="Save..." />
+                  <MenuItem fx:id="saveOption" mnemonicParsing="false" text="Save...">
+                     <accelerator>
+                        <KeyCodeCombination alt="UP" code="S" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                     </accelerator></MenuItem>
                   <MenuItem fx:id="quitOption" mnemonicParsing="false" text="Quit">
                      <accelerator>
                         <KeyCodeCombination alt="UP" code="Q" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
@@ -79,7 +82,10 @@
             </Menu>
             <Menu fx:id="eventsMenu" mnemonicParsing="false" text="Events">
               <items>
-                <MenuItem fx:id="editEventsOption" mnemonicParsing="false" text="Edit Events" />
+                <MenuItem fx:id="editEventsOption" mnemonicParsing="false" text="Edit Events">
+                     <accelerator>
+                        <KeyCodeCombination alt="UP" code="E" control="UP" meta="UP" shift="DOWN" shortcut="UP" />
+                     </accelerator></MenuItem>
                   <MenuItem fx:id="deleteAllOption" mnemonicParsing="false" text="Remove All Events" />
               </items>
             </Menu>

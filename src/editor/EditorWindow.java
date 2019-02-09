@@ -1,10 +1,8 @@
 package editor;
 
 import commons.*;
-import commons.eventScript.*;
 import editor.fxml.*;
 import java.io.*;
-import java.util.*;
 import javafx.application.Application;
 import javafx.collections.*;
 import javafx.fxml.*;
@@ -23,29 +21,6 @@ public class EditorWindow extends Application {
 	
 	@Override
 	public void start(Stage primaryStage) throws IOException {
-		
-		Coords c = new Coords(0, 0);
-		Set<Flag> flags = new HashSet<>();
-		flags.add(Flag.Default);
-		List<EventScript> scripts = new ArrayList<>();
-		scripts.add(new EventScript() {
-			@Override
-			public void runScript() {
-				System.out.println("run");
-			}
-
-			@Override
-			public boolean isUnique() {
-				return true;
-			}
-
-			@Override
-			public int getOrder() {
-				return 6;
-			}
-		});
-		
-		eventsToSave.add(new GameEvent(c, true, flags, flags, scripts));
 		
 		loader = new FXMLLoader(Controller_Main.class.getResource("editor_main.fxml"));
 		root = loader.load();
