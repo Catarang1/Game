@@ -47,6 +47,10 @@ public class EditorWindow extends Application {
 		return board;
 	}
 
+	public static void setBoard(Board board) {
+		EditorWindow.board = board;
+	}
+
 	public static ObservableList<GameEvent> getEventsToSave() {
 		return eventsToSave;
 	}

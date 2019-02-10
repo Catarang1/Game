@@ -88,6 +88,12 @@ public class Controller_Main implements Initializable {
 		Rectangle clip = new Rectangle(0, 0, 1280, 704);
 		stack.setClip(clip);
 	}
+	
+	protected void setupNewMenu() {
+		newOption.setOnAction(e -> {
+			EditorWindow.setBoard(new Board());
+		});
+	}
 
 	protected void setupSaveMenu() {
 		saveOption.setOnAction((event) -> SaveWindow.show());

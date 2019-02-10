@@ -46,21 +46,34 @@ public class Board implements Serializable {
 		sb.append(subTitle).append("\n");
 		sb.append("code: ").append(code).append("\n");
 		
+		for (Coords e: events.keySet()) {
+			sb.append("Key: " + e + "\n----------------------------\n");
+			for (GameEvent g: events.get(e)) sb.append(g + "\n");
+		}
+		
 		sb.append("\n\n");
 		sb.append("Background Layer: \n");
 		for (char[] row:getBackgroundLayer()) sb.append(Arrays.toString(row)).append("\n");
 		
 		sb.append("\n\n");
-		sb.append("Ground Layer: \n");
+		sb.append("Ground Layer 1: \n");
 		for (char[] row:getGroundLayer()) sb.append(Arrays.toString(row)).append("\n");
+		
+		sb.append("\n\n");
+		sb.append("Ground Layer 2: \n");
+		for (char[] row:getGroundLayer2()) sb.append(Arrays.toString(row)).append("\n");
 		
 		sb.append("\n\n");
 		sb.append("Actor Layer: \n");
 		for (char[] row:getActorLayer()) sb.append(Arrays.toString(row)).append("\n");
 		
 		sb.append("\n\n");
-		sb.append("Object Layer: \n");
+		sb.append("Object Layer 1: \n");
 		for (char[] row:getObjectLayer()) sb.append(Arrays.toString(row)).append("\n");
+		
+		sb.append("\n\n");
+		sb.append("Object Layer 2: \n");
+		for (char[] row:getObjectLayer2()) sb.append(Arrays.toString(row)).append("\n");
 		
 		sb.append("\n\n");
 		sb.append("Collision Layer: \n");

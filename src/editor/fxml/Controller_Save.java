@@ -4,7 +4,7 @@ import commons.*;
 import editor.*;
 import java.io.*;
 import java.net.URL;
-import java.util.ResourceBundle;
+import java.util.*;
 import javafx.fxml.*;
 import javafx.scene.control.*;
 import javafx.scene.control.Button;
@@ -71,9 +71,18 @@ public class Controller_Save implements Initializable {
 			board.setSubTitle(boardSubTitleField.getText());
 			if (cycle.isSelected()) board.setCycle(Board.DayCycle.CYCLE);
 			else board.setCycle(Board.DayCycle.DARK);
+			
+			for (GameEvent ev: EditorWindow.getEventsToSave()){
+				if (!board.getEvents().keySet().contains(ev.getTriggerPosition())) {
+					board.getEvents().put(ev.getTriggerPosition(), new ArrayList<>());
+				}
+				board.getEvents().get(ev.getTriggerPosition()).add(ev);
+			}
+			
+			System.out.println(board);
 
 			try {
-				File directory = new File("boards/");
+				File directory = new File("boards");
 				if (!directory.exists()) directory.mkdirs();
 				FileOutputStream fos = new FileOutputStream("boards/" + EditorWindow.getBoard().getCode() + ".map");
 				ObjectOutputStream oos = new ObjectOutputStream(fos);
@@ -81,6 +90,7 @@ public class Controller_Save implements Initializable {
 				fos.flush();
 				fos.close();
 			} catch (IOException ex) {
+				ex.printStackTrace();
 				System.err.println("failed to save");
 			}
 			SaveWindow.close();
