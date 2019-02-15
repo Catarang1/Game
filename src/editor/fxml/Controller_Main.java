@@ -18,11 +18,6 @@ import javafx.scene.text.*;
 import javafx.util.*;
 import resources.*;
 
-/**
- * FXML Controller class
- *
- * @author Jan
- */
 public class Controller_Main implements Initializable {
 
 	@FXML private MenuBar menuBar;

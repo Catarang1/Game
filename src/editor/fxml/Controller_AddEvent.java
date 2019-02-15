@@ -5,6 +5,8 @@ import commons.eventScript.*;
 import editor.*;
 import java.net.URL;
 import java.util.*;
+import javafx.beans.value.*;
+import javafx.collections.*;
 import javafx.event.*;
 import javafx.fxml.*;
 import javafx.scene.control.*;
@@ -29,16 +31,18 @@ public class Controller_AddEvent implements Initializable {
 	@FXML private VBox missingFlagsWrapper;
 	@FXML private VBox presentFlagsWrapper;
 	@FXML private Button deleteScriptB;
-
-	
+	private EventHandler<ActionEvent> checkValidity;
 
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
+		triggerX.setOnKeyReleased(e -> checkValidity());
+		triggerY.setOnKeyReleased(e -> checkValidity());
+		eventScriptList.getItems().addListener((ListChangeListener.Change<? extends EventScript> c) -> checkValidity());
 		setupFlagLists();
 		setupAddButton();
 		setupDeleteButton();
 		setupScriptAddition();
-		setupCancelButton();		
+		setupCancelButton();
 	}
 
 	private void setupAddButton() {
@@ -47,31 +51,35 @@ public class Controller_AddEvent implements Initializable {
 			int y = Integer.parseInt(triggerY.getText().trim());
 			boolean playerTriggered = triggeredByPlayer.isSelected();
 			Coords trigger = new Coords(x, y);
-			
+
 			Set<Flag> selectedPresent = new HashSet<>();
 			Set<Flag> selectedAbsent = new HashSet<>();
-			
-			for (int i = 0; i <presentFlagsWrapper.getChildren().size(); i++) {
-				CheckBox a = (CheckBox)missingFlagsWrapper.getChildren().get(i);
-				CheckBox b = (CheckBox)presentFlagsWrapper.getChildren().get(i);
-				if (a.isSelected()) selectedAbsent.add(Flag.valueOf(a.getText()));
-				if (b.isSelected()) selectedPresent.add(Flag.valueOf(b.getText()));
+
+			for (int i = 0; i < presentFlagsWrapper.getChildren().size(); i++) {
+				CheckBox a = (CheckBox) missingFlagsWrapper.getChildren().get(i);
+				CheckBox b = (CheckBox) presentFlagsWrapper.getChildren().get(i);
+				if (a.isSelected()) {
+					selectedAbsent.add(Flag.valueOf(a.getText()));
+				}
+				if (b.isSelected()) {
+					selectedPresent.add(Flag.valueOf(b.getText()));
+				}
 			}
-			
+
 			ArrayList<EventScript> events = new ArrayList<>();
 			eventScriptList.getItems().forEach(t -> events.add(t));
-			
+
 			GameEvent created = new GameEvent(trigger, playerTriggered, selectedAbsent, selectedPresent, events);
 			EditorWindow.addEvent(created);
-			
+
 			reset();
 			Stage stage = (Stage) missingFlagsWrapper.getScene().getWindow();
 			stage.close();
 		});
 	}
 
-	private void setupFlagLists() {		
-		for(Flag flag:Flag.values()) {
+	private void setupFlagLists() {
+		for (Flag flag : Flag.values()) {
 			missingFlagsWrapper.getChildren().add(new CheckBox(flag.name()));
 			presentFlagsWrapper.getChildren().add(new CheckBox(flag.name()));
 		}
@@ -85,14 +93,14 @@ public class Controller_AddEvent implements Initializable {
 		addTeleport.setOnAction(e -> new CreateEventScriptWindow(getLinkToFXML("teleport.fxml")));
 		addSwitchBoard.setOnAction(e -> new CreateEventScriptWindow(getLinkToFXML("switchBoard.fxml")));
 	}
-	
+
 	private URL getLinkToFXML(String name) {
 		URL toReturn = EventScript.class.getResource(name);
 		return toReturn;
 	}
-	
+
 	public void addEventScript(EventScript e) {
-		eventScriptList.getItems().add(e);		
+		eventScriptList.getItems().add(e);
 	}
 
 	private void setupDeleteButton() {
@@ -102,19 +110,44 @@ public class Controller_AddEvent implements Initializable {
 		});
 	}
 
+	private boolean isFormValid() {
+		try {
+			int x = Integer.parseInt(triggerX.getText());
+			int y = Integer.parseInt(triggerY.getText());
+			if (x < 0 || x > 39) {
+				return false;
+			}
+			if (y < 0 || y > 21) {
+				return false;
+			}
+		} catch (NumberFormatException ex) {
+			return false;
+		}
+		if (eventScriptList.getItems().isEmpty()) {
+			return false;
+		}
+		return true;
+	}
+
+	private void checkValidity() {
+		boolean inputValid = isFormValid();
+		System.out.println(inputValid);
+		addB.setDisable(!inputValid);
+	}
+
 	private void setupCancelButton() {
 		cancelB.setOnAction(e -> AddEventWindow.close());
 	}
-	
+
 	private void reset() {
 		triggerX.clear();
 		triggerY.clear();
-		
+
 		missingFlagsWrapper.getChildren().clear();
 		presentFlagsWrapper.getChildren().clear();
-		
+
 		setupFlagLists();
-		
-		eventScriptList.getItems().clear();		
+
+		eventScriptList.getItems().clear();
 	}
 }

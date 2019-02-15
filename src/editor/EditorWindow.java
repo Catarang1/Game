@@ -21,7 +21,6 @@ public class EditorWindow extends Application {
 	
 	@Override
 	public void start(Stage primaryStage) throws IOException {
-		
 		loader = new FXMLLoader(Controller_Main.class.getResource("editor_main.fxml"));
 		root = loader.load();
 		controller = loader.getController();

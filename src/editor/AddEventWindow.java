@@ -1,8 +1,6 @@
 
 package editor;
 
-// @author Jan
-
 import editor.fxml.*;
 import java.io.*;
 import java.util.logging.*;
