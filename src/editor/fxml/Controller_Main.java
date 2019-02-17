@@ -65,7 +65,11 @@ public class Controller_Main implements Initializable {
 
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
-
+		
+		loadOption.setOnAction((event) -> {
+			new AlertWindow("not implemented yet");
+		});
+		
 		setupLayerSelection();
 		setupShowMenu();
 		setupGridLayer();
@@ -100,6 +104,7 @@ public class Controller_Main implements Initializable {
 	
 	protected void setupEvents() {
 		editEventsOption.setOnAction(e -> EventsWindow.show());
+		deleteAllOption.setOnAction(e -> EditorWindow.getEventsToSave().clear());
 	}
 
 	protected void setupSelectMenu() {
@@ -154,7 +159,8 @@ public class Controller_Main implements Initializable {
 				iv.setPickOnBounds(true);
 				activeTilesBox.getChildren().add(iv);
 			}
-
+			activeTilesWrapper.layout();
+			activeTilesBox.layout();
 		};
 		activeLayerComboBox.getItems().setAll(EditorLayer.values());
 		activeLayerComboBox.getSelectionModel().selectFirst();

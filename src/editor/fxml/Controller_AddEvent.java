@@ -31,7 +31,6 @@ public class Controller_AddEvent implements Initializable {
 	@FXML private VBox missingFlagsWrapper;
 	@FXML private VBox presentFlagsWrapper;
 	@FXML private Button deleteScriptB;
-	private EventHandler<ActionEvent> checkValidity;
 
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
@@ -95,8 +94,7 @@ public class Controller_AddEvent implements Initializable {
 	}
 
 	private URL getLinkToFXML(String name) {
-		URL toReturn = EventScript.class.getResource(name);
-		return toReturn;
+		return EventScript.class.getResource(name);
 	}
 
 	public void addEventScript(EventScript e) {
@@ -130,9 +128,7 @@ public class Controller_AddEvent implements Initializable {
 	}
 
 	private void checkValidity() {
-		boolean inputValid = isFormValid();
-		System.out.println(inputValid);
-		addB.setDisable(!inputValid);
+		addB.setDisable(!isFormValid());
 	}
 
 	private void setupCancelButton() {

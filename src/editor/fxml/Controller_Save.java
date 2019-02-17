@@ -119,19 +119,12 @@ public class Controller_Save implements Initializable {
 
 	private boolean infoValid() {
 		try {
-			if (!boardCodeField.getBorder().equals(successBorder)) {
-				return false;
-			}
-			if (!boardTitleField.getBorder().equals(successBorder)) {
-				return false;
-			}
-			if (!boardSubTitleField.getBorder().equals(successBorder)) {
-				return false;
-			}
+			if (!boardCodeField.getBorder().equals(successBorder)) return false;
+			if (!boardTitleField.getBorder().equals(successBorder)) return false;
+			if (!boardSubTitleField.getBorder().equals(successBorder)) return false;
 		} catch (NullPointerException e) {
 			System.out.println(e.getMessage());
 		}
-
 		return true;
 	}
 

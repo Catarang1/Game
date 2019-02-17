@@ -1,7 +1,5 @@
 package commons;
 
-// @author Jan
-
 import java.io.*;
 import java.util.*;
  
@@ -51,36 +49,28 @@ public class Board implements Serializable {
 			for (GameEvent g: events.get(e)) sb.append(g + "\n");
 		}
 		
-		sb.append("\n\n");
-		sb.append("Background Layer: \n");
+		sb.append("\n\nBackground Layer: \n");
 		for (char[] row:getBackgroundLayer()) sb.append(Arrays.toString(row)).append("\n");
 		
-		sb.append("\n\n");
-		sb.append("Ground Layer 1: \n");
+		sb.append("\n\nGround Layer 1: \n");
 		for (char[] row:getGroundLayer()) sb.append(Arrays.toString(row)).append("\n");
 		
-		sb.append("\n\n");
-		sb.append("Ground Layer 2: \n");
+		sb.append("\n\nGround Layer 2: \n");
 		for (char[] row:getGroundLayer2()) sb.append(Arrays.toString(row)).append("\n");
 		
-		sb.append("\n\n");
-		sb.append("Actor Layer: \n");
+		sb.append("\n\nActor Layer: \n");
 		for (char[] row:getActorLayer()) sb.append(Arrays.toString(row)).append("\n");
 		
-		sb.append("\n\n");
-		sb.append("Object Layer 1: \n");
+		sb.append("\n\nObject Layer 1: \n");
 		for (char[] row:getObjectLayer()) sb.append(Arrays.toString(row)).append("\n");
 		
-		sb.append("\n\n");
-		sb.append("Object Layer 2: \n");
+		sb.append("\n\nObject Layer 2: \n");
 		for (char[] row:getObjectLayer2()) sb.append(Arrays.toString(row)).append("\n");
 		
-		sb.append("\n\n");
-		sb.append("Collision Layer: \n");
+		sb.append("\n\nCollision Layer: \n");
 		for (char[] row:getCollisionLayer()) sb.append(Arrays.toString(row)).append("\n");
 		
-		sb.append("\n\n");
-		sb.append("Light Layer: \n");
+		sb.append("\n\nLight Layer: \n");
 		for (char[] row:getLightLayer()) sb.append(Arrays.toString(row)).append("\n");
 		return sb.toString();
 	}
