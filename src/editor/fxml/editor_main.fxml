@@ -138,7 +138,7 @@
                   <Canvas fx:id="object1Layer" height="704.0" width="1280.0" />
                   <Canvas fx:id="collisionLayer" height="704.0" width="1280.0" />
                   <Pane fx:id="lightLayer" blendMode="MULTIPLY" maxHeight="704.0" maxWidth="1280.0" style="-fx-background-color: midnightblue;" />
-                  <Canvas fx:id="gridLayer" height="704.0" width="1280.0" />
+                  <Canvas fx:id="gridLayer" height="704.0" opacity="0.6" width="1280.0" />
                   <Pane fx:id="interactiveLayer" maxHeight="704.0" maxWidth="1280.0" />
                </children>
             </StackPane>

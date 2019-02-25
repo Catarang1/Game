@@ -3,6 +3,7 @@ package editor;
 
 // @author Jan
 
+import javafx.event.*;
 import javafx.fxml.*;
 import javafx.geometry.*;
 import javafx.scene.*;
@@ -22,7 +23,7 @@ public class AlertWindow {
     protected final Text text;
     protected final Button button;
 
-	public AlertWindow(String alertMessage) {
+	public AlertWindow(String alertMessage) {		
 		root = new VBox();
         
 		textwrap = new TextFlow();
@@ -33,11 +34,8 @@ public class AlertWindow {
         root.setPrefWidth(500.0);
         root.setSpacing(20.0);
 
-//      text.setStrokeType(javafx.scene.shape.StrokeType.OUTSIDE);
-//      text.setStrokeWidth(0.0);
-
         button.setDefaultButton(true);
-//      button.setMnemonicParsing(false);
+		button.setOnAction(e -> stage.close());
         root.setPadding(new Insets(20.0));
 
         textwrap.getChildren().add(text);

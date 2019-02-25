@@ -3,13 +3,14 @@ package editor;
 import commons.*;
 import editor.fxml.*;
 import java.io.*;
+import java.util.logging.*;
 import javafx.application.Application;
 import javafx.collections.*;
 import javafx.fxml.*;
 import javafx.scene.*;
 import javafx.stage.Stage;
 
-public class EditorWindow extends Application {
+public class EditorWindow {
 	
 	private Stage stage;
 	private Scene scene;
@@ -19,23 +20,21 @@ public class EditorWindow extends Application {
 	private static Board board = new Board();
 	private static ObservableList<GameEvent> eventsToSave = FXCollections.observableArrayList();
 	
-	@Override
-	public void start(Stage primaryStage) throws IOException {
-		loader = new FXMLLoader(Controller_Main.class.getResource("editor_main.fxml"));
-		root = loader.load();
-		controller = loader.getController();
-		
-		scene = new Scene(root);
-		stage = primaryStage;
-		stage.setScene(scene);
-		stage.setResizable(false);
-		stage.setTitle("Game Board Editor");
-		stage.show();
-		
-	}
-	
-	public static void main(String[] args) {
-		launch(args);
+	public EditorWindow() {
+		try {
+			loader = new FXMLLoader(Controller_Main.class.getResource("editor_main.fxml"));
+			root = loader.load();
+			controller = loader.getController();
+			
+			scene = new Scene(root);
+			stage = new Stage();
+			stage.setScene(scene);
+			stage.setResizable(false);
+			stage.setTitle("Game Board Editor");
+			stage.show();
+		} catch (IOException ex) {
+			Logger.getLogger(EditorWindow.class.getName()).log(Level.SEVERE, null, ex);
+		}
 	}
 
 	public static Controller_Main getController() {

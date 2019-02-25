@@ -5,6 +5,7 @@ import editor.*;
 import java.net.URL;
 import java.util.*;
 import javafx.animation.*;
+import javafx.concurrent.*;
 import javafx.event.*;
 import javafx.fxml.*;
 import javafx.scene.canvas.*;
