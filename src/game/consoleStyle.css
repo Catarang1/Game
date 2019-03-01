@@ -1,0 +1,10 @@
+/* 
+    Created on : Feb 27, 2019, 7:39:21 PM
+    Author     : Jan
+*/
+
+.scroll-pane, .scroll-pane .viewport, #consoleOut {
+    -fx-background-color: none;
+    -fx-border-radius: 3px;
+    -fx-background-radius: 3px;
+}

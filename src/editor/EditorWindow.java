@@ -4,7 +4,6 @@ import commons.*;
 import editor.fxml.*;
 import java.io.*;
 import java.util.logging.*;
-import javafx.application.Application;
 import javafx.collections.*;
 import javafx.fxml.*;
 import javafx.scene.*;

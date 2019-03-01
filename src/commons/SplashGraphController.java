@@ -1,6 +1,7 @@
 package commons;
 
 import editor.*;
+import game.*;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.*;
@@ -19,18 +20,23 @@ public class SplashGraphController implements Initializable {
 	
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
-		root.setBackground(new Background(new BackgroundFill(Color.TRANSPARENT, CornerRadii.EMPTY, Insets.EMPTY)));
+		root.setBackground(/*new Background(new BackgroundFill(Color.TRANSPARENT, CornerRadii.EMPTY, Insets.EMPTY))*/Background.EMPTY);
 		close.setOnMouseClicked(e -> {
-			closeStage();
+			closeThisStage();
 		});
 		
 		editor.setOnMouseClicked(e -> {
 			new EditorWindow();
-			closeStage();
+			closeThisStage();
+		});
+		
+		play.setOnMouseClicked(e -> {
+			Engine.window.show();
+			closeThisStage();
 		});
 	}
 	
-	private void closeStage() {
+	private void closeThisStage() {
 		Stage base = (Stage) close.getScene().getWindow();
 		base.close();
 	}

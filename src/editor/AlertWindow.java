@@ -3,13 +3,10 @@ package editor;
 
 // @author Jan
 
-import javafx.event.*;
-import javafx.fxml.*;
 import javafx.geometry.*;
 import javafx.scene.*;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
-import static javafx.scene.layout.Region.USE_PREF_SIZE;
 import javafx.scene.text.*;
 import javafx.stage.*;
 
