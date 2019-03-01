@@ -8,7 +8,6 @@ import javafx.animation.Animation.Status;
 import javafx.collections.*;
 import javafx.scene.control.*;
 import javafx.scene.image.*;
-import javafx.scene.paint.*;
 import javafx.util.*;
  
 public class AlertManager {
@@ -27,7 +26,6 @@ public class AlertManager {
 		
 		KeyFrame zeroOffset = new KeyFrame(Duration.millis(2100), e -> {});
 		KeyFrame tick = new KeyFrame(Duration.ZERO, e -> {
-			Engine.console.write("tick", Color.ORANGE);
 			if (!queue.isEmpty()) showAlert(poll());
 			else timer.stop();
 		});

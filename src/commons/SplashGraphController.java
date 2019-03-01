@@ -5,9 +5,7 @@ import game.*;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.*;
-import javafx.geometry.*;
 import javafx.scene.layout.*;
-import javafx.scene.paint.*;
 import javafx.stage.*;
 
 
@@ -20,7 +18,7 @@ public class SplashGraphController implements Initializable {
 	
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
-		root.setBackground(/*new Background(new BackgroundFill(Color.TRANSPARENT, CornerRadii.EMPTY, Insets.EMPTY))*/Background.EMPTY);
+		root.setBackground(Background.EMPTY);
 		close.setOnMouseClicked(e -> {
 			closeThisStage();
 		});

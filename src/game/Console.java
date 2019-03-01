@@ -16,28 +16,12 @@ public class Console {
 			Engine.console.write("Console initialized with response, enter 'console help' for full command/arg list", Color.AQUA);
 		});
 		
-		StringBuilder helpTextBuilder = new StringBuilder();
-		helpTextBuilder.append("Command 'console':\n");
-		helpTextBuilder.append("*arg help: invokes basic help for console\n");
-		helpTextBuilder.append("*arg clear: clears out console output\n");
-		
-		helpTextBuilder.append("\n\nCommand 'show':\n");
-		helpTextBuilder.append("*arg title: shows titlebox with main name of map and subtitle\n");
-		helpTextBuilder.append("*arg dialogline: shows dialog line element used while flashing dialog events\n");
-		helpTextBuilder.append("*arg alertline: shows alert line element used in alert events, usually managed by AlertManager class\n");
-		
-		helpTextBuilder.append("\n\nCommand 'hide':\n");
-		helpTextBuilder.append("*arg title: hides titlebox with main name of map and subtitle\n");
-		helpTextBuilder.append("*arg dialogline: hides dialog line element used while flashing dialog events\n");
-		helpTextBuilder.append("*arg alertline: hides alert line element used in alert events, usually managed by AlertManager class\n");
-		helpTextBuilder.append("*arg console: hides whole console gui parent node\n");
-		
 		knownCommands.put("console", new Task("help", "clear") {
 			@Override
 			public void run() { 
 				switch (getArgument()) {
 					case "help":
-						Engine.console.write(helpTextBuilder.toString(), Color.ORANGE);
+						printKnownCommands();
 						break;
 					case "clear":
 						Engine.controller.getConsoleOutput().getChildren().clear();
@@ -106,6 +90,17 @@ public class Console {
 		ScrollPane scroll = Engine.window.controller.getConsoleScroll();
 		scroll.layout();
 		scroll.setVvalue(1.0);
+	}
+	
+	private static void printKnownCommands(){
+		for (String command:knownCommands.keySet()) {
+			Engine.console.write(command, Color.CORNFLOWERBLUE);
+			Set<String> validArgs = knownCommands.get(command).getValidArgs();
+			for (String validArg:validArgs) {
+				Engine.console.write("* "+validArg, Color.DEEPSKYBLUE);
+			}
+			//Engine.console.write("\n", Color.ORANGE);
+		}
 	}
 
 }
