@@ -1,4 +1,4 @@
-package game;
+package game.gui;
 
 // @author Jan
 import commons.*;

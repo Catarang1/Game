@@ -1,7 +1,9 @@
 
-package game;
+package game.logic;
 
 import commons.*;
+import game.gui.GameGUIController;
+import game.gui.GameWindow;
 import java.util.*;
 
  

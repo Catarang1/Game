@@ -1,5 +1,7 @@
-package game;
+package game.gui;
 
+import game.logic.Alert;
+import game.logic.Engine;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.animation.*;

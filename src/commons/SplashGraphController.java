@@ -1,7 +1,7 @@
 package commons;
 
+import game.logic.Engine;
 import editor.*;
-import game.*;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.*;

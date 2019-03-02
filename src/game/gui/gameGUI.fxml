@@ -14,7 +14,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.TextFlow?>
 
-<VBox fx:id="root" alignment="CENTER" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="game.GameGUIController">
+<VBox fx:id="root" alignment="CENTER" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="game.gui.GameGUIController">
    <children>
       <StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="704.0" prefWidth="1280.0" style="-fx-background-color: white;" VBox.vgrow="NEVER">
          <children>
@@ -24,7 +24,7 @@
             <Pane fx:id="lightLayer" blendMode="MULTIPLY" opacity="0.9" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #001b38;" />
             <ImageView fx:id="vignette" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../resources/vignette2.png" />
+                  <Image url="@../../resources/vignette2.png" />
                </image>
             </ImageView>
             <Pane fx:id="GUI" StackPane.alignment="CENTER">
@@ -39,7 +39,7 @@
                      <graphic>
                         <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../../../../../Desktop/book.png" />
+                              <Image url="@../../resources/alertTypes/crystal.png" />
                            </image>
                         </ImageView>
                      </graphic>
