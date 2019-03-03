@@ -16,7 +16,7 @@
 }
 
 .scroll-pane:fitToWidth .scroll-bar:vertical {
-    -fx-background-color: #00000066;
+    -fx-background-color: #000000CC;
     -fx-border-radius: 3px;
     -fx-background-radius: 3px;
 }
@@ -26,5 +26,5 @@
 }
 
 .thumb {
-    -fx-background-color: #00000066;
+    -fx-background-color: #000000CC;
 }

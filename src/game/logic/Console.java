@@ -19,7 +19,7 @@ public class Console {
 	static {
 		
 		Platform.runLater(() -> {
-			Engine.console.write("Console initialized with response, enter 'console help' for full command/arg list\n\n", Color.AQUA);
+			Engine.console.write("Console initialized with response, enter 'console help' for full command/arg list\n\n");
 		});
 		
 		commands.put("console", new HashMap<>());
