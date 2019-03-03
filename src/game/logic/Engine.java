@@ -9,29 +9,16 @@ import java.util.*;
  
 public class Engine {
 	
-	public static GameWindow window;
-	public static GameGUIController controller;
+	public static GameWindow window = new GameWindow();
+	public static GameGUIController controller = window.controller;
 	
-	public static InputSlot inputDirection;
-	public static InputSlot inputAction;
+	public static InputSlot inputAction = new InputSlot();
+	public static InputSlot inputDirection = new InputSlot();
 	
-	public static List<Actor> actors;
-	public static Console console;
+	public static List<Actor> actors = new ArrayList<>();
+	public static Console console = new Console();
 	public static Board activeBoard;
-	public static AlertManager alertManager;
-	public static MapLoader maploader;
-
-	static {
-		window = new GameWindow();
-		controller = window.controller;
-		
-		inputAction = new InputSlot();
-		inputDirection = new InputSlot();
-		
-		actors = new ArrayList<>();
-		console = new Console();
-		alertManager = new AlertManager();
-		maploader = new MapLoader();
-	}
+	public static AlertManager alertManager = new AlertManager();
+	public static MapLoader maploader = new MapLoader();
 
 }

@@ -67,7 +67,6 @@ public class GameGUIController implements Initializable {
 		} else {
 			consoleWrapper.setVisible(true);
 		}
-		
 	}
 	
 	public void flashMapName(){
