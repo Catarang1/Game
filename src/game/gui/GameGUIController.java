@@ -16,11 +16,6 @@ import javafx.scene.layout.*;
 import javafx.scene.text.*;
 import javafx.util.*;
 
-/**
- * FXML Controller class
- *
- * @author Jan
- */
 public class GameGUIController implements Initializable {
 
 	@FXML private Canvas backLayer;
@@ -42,10 +37,13 @@ public class GameGUIController implements Initializable {
 	@FXML private Label timeText;
 	
 	private FadeTransition flashAnimation;
+	private FadeTransition dayNightAnimation;
 	
 	
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
+		dayNightAnimation = new FadeTransition(Duration.seconds(30), lightLayer);
+		
 		flashAnimation = new FadeTransition(Duration.seconds(1));
 		flashAnimation.setFromValue(1);
 		flashAnimation.setToValue(0);
@@ -122,5 +120,17 @@ public class GameGUIController implements Initializable {
 
 	public Label getTimeText() {
 		return timeText;
+	}
+	
+	public void sunrise() {
+		dayNightAnimation.setToValue(0);
+		dayNightAnimation.setFromValue(0.9);
+		dayNightAnimation.play();
+	}
+	
+	public void dawn() {
+		dayNightAnimation.setToValue(0.9);
+		dayNightAnimation.setFromValue(0);
+		dayNightAnimation.play();
 	}
 }

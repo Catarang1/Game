@@ -16,7 +16,7 @@
 
 <VBox fx:id="root" alignment="CENTER" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="game.gui.GameGUIController">
    <children>
-      <StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="704.0" prefWidth="1280.0" style="-fx-background-color: white;" VBox.vgrow="NEVER">
+      <StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="704.0" prefWidth="1280.0" style="-fx-background-color: #222;" VBox.vgrow="NEVER">
          <children>
             <Canvas fx:id="backLayer" cache="true" height="704.0" width="1280.0" />
             <Canvas fx:id="actorLayer" cache="true" height="704.0" width="1280.0" />

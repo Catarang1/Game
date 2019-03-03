@@ -53,14 +53,28 @@ public class Console {
 		String command = input.split(" ")[0];
 		String argument = input.split(" ")[1];
 		
-		if (command.equals("load")&&argument.matches("\\d{4}")) {
+//		if (command.equals("load")&&argument.matches("\\d{4}")) {
+//			try {
+//				Engine.console.write(command + " " + argument, ACCEPT);
+//				Engine.maploader.load(argument);
+//			} 
+//			catch (Exception e) {} 
+//			finally {return;}
+//		} else if (!argument.matches("\\d{4}")) {
+//			Engine.console.write("Illegal argument for command load: " + argument, ERROR);
+//			return;
+//		}
+		
+		if (command.equals("setTime")&&argument.matches("\\d{2}:\\d{2}")) {
 			try {
 				Engine.console.write(command + " " + argument, ACCEPT);
-				Engine.maploader.load(argument);
+				int h = Integer.valueOf(argument.split(":")[0]);
+				int m = Integer.valueOf(argument.split(":")[1]);
+				Engine.timekeeper.setTime(h, m);
 			} 
 			catch (Exception e) {} 
 			finally {return;}
-		} else if (command.equals("load")&&!argument.matches("\\d{4}")) {
+		} else if (!argument.matches("\\d{2}:\\d{2}")) {
 			Engine.console.write("Illegal argument for command load: " + argument, ERROR);
 			return;
 		}

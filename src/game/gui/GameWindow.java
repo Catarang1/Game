@@ -1,6 +1,5 @@
 package game.gui;
 
-// @author Jan
 import commons.*;
 import javafx.scene.input.*;
 
@@ -13,6 +12,7 @@ public class GameWindow extends FXMLWindow {
 		super.getScene().setOnKeyPressed(e -> {
 			if (e.getCode() == KeyCode.TAB) controller.toggleConsole();
 		});
+		getStage().setFullScreen(true);
 	}
 
 }

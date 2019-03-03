@@ -26,5 +26,7 @@
 }
 
 .thumb {
-    -fx-background-color: #000000CC;
+    -fx-background-color: #222;
+    -fx-border-color: #333;
+    -fx-border-radius: 4px;
 }

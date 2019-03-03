@@ -19,11 +19,21 @@ public class TimeKeeper {
 		time.play();
 	}
 	
+	public void setTime(int h, int m) {
+		if (h < 0||h > 23||m < 0||m > 59) return;
+		hours = h;
+		minutes = m;
+	}
+	
 	public void tick() {		
 		minutes++;
 		if (minutes == 60) {
 			minutes = 0;
 			hours++;
+			if (hours == 7) 
+				Engine.controller.sunrise();
+			else if (hours == 19)
+				Engine.controller.dawn();
 		}
 		
 		if (hours == 24) {

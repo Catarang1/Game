@@ -12,7 +12,7 @@ import javafx.util.*;
  
 public class AlertManager {
 	
-	private List<Alert> queue = new ArrayList<>();
+	private Queue<Alert> queue = new LinkedList();
 	private Timeline timer = new Timeline();
 	private FadeTransition flashAlert = new FadeTransition(Duration.millis(1000));
 	private Label alertline = Engine.window.controller.getAlertText();
@@ -26,7 +26,7 @@ public class AlertManager {
 		
 		KeyFrame zeroOffset = new KeyFrame(Duration.millis(2100), e -> {});
 		KeyFrame tick = new KeyFrame(Duration.ZERO, e -> {
-			if (!queue.isEmpty()) showAlert(poll());
+			if (!queue.isEmpty()) showAlert(queue.poll());
 			else timer.stop();
 		});
 		timer.getKeyFrames().addAll(zeroOffset, tick);
@@ -51,12 +51,6 @@ public class AlertManager {
 	public void queueAlert(Alert a) {
 		queue.add(a);
 		if (timer.getStatus() != Status.RUNNING) timer.play();
-	}
-	
-	private Alert poll(){
-		Alert x = queue.get(0);
-		queue.remove(x);
-		return x;
 	}
 	
 }
