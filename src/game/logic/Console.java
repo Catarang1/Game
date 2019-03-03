@@ -25,6 +25,22 @@ public class Console {
 		commands.get("console").put("clear", () -> Engine.controller.getConsoleOutput().getChildren().clear());
 		commands.get("console").put("help", () -> printKnownCommands());
 		
+		commands.put("show", new HashMap<>());
+		commands.get("show").put("title", () -> Engine.controller.getMapNameWrapper().setOpacity(1));
+		commands.get("show").put("alert", () -> Engine.controller.getAlertText().setOpacity(1));
+		commands.get("show").put("dialog", () -> Engine.controller.getDialogText().setOpacity(1));
+		
+		commands.put("hide", new HashMap<>());
+		commands.get("hide").put("title", () -> Engine.controller.getMapNameWrapper().setOpacity(0));
+		commands.get("hide").put("alert", () -> Engine.controller.getAlertText().setOpacity(0));
+		commands.get("hide").put("dialog", () -> Engine.controller.getDialogText().setOpacity(0));
+		commands.get("hide").put("console", () -> Engine.controller.toggleConsole());
+		
+		commands.put("alert", new HashMap<>());
+		commands.get("alert").put("status", () -> Engine.console.write(Engine.alertManager.timerStatus(), INFO));
+		commands.get("alert").put("queue_length", () -> Engine.console.write("Queue length: " + Engine.alertManager.queueLength(), INFO));
+		commands.get("alert").put("test", () -> Engine.alertManager.queueAlert(new Alert(Alert.AlertType.Teleport, "alert test via console")));
+		
 	}
 
 	public void acceptInput(String input) {
@@ -63,20 +79,12 @@ public class Console {
 		Text out = new Text(text + "\n");
 		out.setFill(color);
 		Engine.controller.getConsoleOutput().getChildren().add(out);
-		scrollDown();
 	}
 	
 	public void write(String text) {
 		Text out = new Text(text + "\n");
 		out.setFill(Color.WHITE);
 		Engine.controller.getConsoleOutput().getChildren().add(out);
-		scrollDown();
-	}
-	
-	private void scrollDown() {
-		ScrollPane scroll = Engine.window.controller.getConsoleScroll();
-		scroll.layout();
-		scroll.setVvalue(1.0);
 	}
 	
 	private static void printKnownCommands(){
@@ -84,7 +92,6 @@ public class Console {
 			Engine.console.write("Command " + command, INFO);
 			for (String argument:commands.get(command).keySet()) 
 				Engine.console.write("  * " + argument, INFO);
-			
 		}		
 	}
 

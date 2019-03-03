@@ -3,7 +3,6 @@ package game.logic;
 // @author Jan
 import commons.*;
 import java.io.*;
-import javafx.scene.paint.*;
 
 public class MapLoader {
 

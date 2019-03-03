@@ -33,19 +33,27 @@ public class AlertManager {
 		timer.setCycleCount(Timeline.INDEFINITE);
 	}
 	
-	public void showAlert(Alert a) {
+	private void showAlert(Alert a) {
 		alertline.setText(a.getText());
 		alertline.setGraphic(new ImageView(a.getType().getAlertGraphics()));
 		alertline.setOpacity(1);
 		flashAlert.play();
 	}
 	
-	public void put(Alert a) {
+	public String timerStatus(){
+		return timer.getStatus().name();
+	}
+	
+	public int queueLength() {
+		return queue.size();
+	}
+	
+	public void queueAlert(Alert a) {
 		queue.add(a);
 		if (timer.getStatus() != Status.RUNNING) timer.play();
 	}
 	
-	public Alert poll(){
+	private Alert poll(){
 		Alert x = queue.get(0);
 		queue.remove(x);
 		return x;

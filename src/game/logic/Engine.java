@@ -20,5 +20,6 @@ public class Engine {
 	public static Board activeBoard;
 	public static AlertManager alertManager = new AlertManager();
 	public static MapLoader maploader = new MapLoader();
+	public static TimeKeeper timekeeper = new TimeKeeper();
 
 }

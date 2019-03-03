@@ -8,3 +8,23 @@
     -fx-border-radius: 3px;
     -fx-background-radius: 3px;
 }
+
+.scroll-pane .scroll-bar:vertical .increment-button,
+.scroll-pane .scroll-bar:vertical .decrement-button {
+    visibility: hidden;
+    -fx-scale-y: 0;
+}
+
+.scroll-pane:fitToWidth .scroll-bar:vertical {
+    -fx-background-color: #00000066;
+    -fx-border-radius: 3px;
+    -fx-background-radius: 3px;
+}
+
+.decrement-arrow, .increment-arrow {
+    visibility: hidden;
+}
+
+.thumb {
+    -fx-background-color: #00000066;
+}

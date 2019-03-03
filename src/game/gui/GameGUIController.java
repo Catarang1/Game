@@ -5,7 +5,9 @@ import game.logic.Engine;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.animation.*;
+import javafx.collections.*;
 import javafx.fxml.*;
+import javafx.scene.*;
 import javafx.scene.canvas.*;
 import javafx.scene.control.*;
 import javafx.scene.image.*;
@@ -37,8 +39,10 @@ public class GameGUIController implements Initializable {
 	@FXML private VBox root;
 	@FXML private VBox mapNameWrapper;
 	@FXML private ScrollPane consoleScroll;
+	@FXML private Label timeText;
 	
 	private FadeTransition flashAnimation;
+	
 	
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
@@ -49,6 +53,11 @@ public class GameGUIController implements Initializable {
 		
 		consoleIn.setOnKeyPressed(e -> {
 			if (e.getCode() == KeyCode.TAB) toggleConsole();
+		});
+		
+		consoleOut.getChildren().addListener((ListChangeListener.Change<? extends Node> c) -> {
+			consoleScroll.layout();
+			consoleScroll.setVvalue(1);
 		});
 	}
 	
@@ -117,7 +126,8 @@ public class GameGUIController implements Initializable {
 	public Label getMapSubName() {
 		return mapSubName;
 	}
-	
-	
-	
+
+	public Label getTimeText() {
+		return timeText;
+	}
 }
