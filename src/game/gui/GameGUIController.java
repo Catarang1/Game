@@ -99,13 +99,6 @@ public class GameGUIController implements Initializable {
 	public ScrollPane getConsoleScroll() {
 		return consoleScroll;
 	}
-	
-	public void flashAlert(Alert a) {
-		alertText.setText(a.getText());
-		alertText.setGraphic(new ImageView(a.getType().getAlertGraphics()));
-		flashAnimation.setNode(alertText);
-		flashAnimation.play();
-	}
 
 	public void playFlashAnimation() {
 		flashAnimation.play();

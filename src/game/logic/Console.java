@@ -10,11 +10,12 @@ import javafx.scene.text.*;
 public class Console {
 
 	private static Map<String, Map<String, Runnable>> commands = new HashMap<>();
+	
+	
 	public static final Color INFO = Color.CORNFLOWERBLUE;
 	public static final Color ERROR = Color.CRIMSON;
 	public static final Color ACCEPT = Color.LIMEGREEN;
 	
-
 	static {
 		
 		Platform.runLater(() -> {

@@ -14,9 +14,7 @@ public class TimeKeeper {
 	
 	public TimeKeeper() {
 		Engine.controller.getTimeText().textProperty().bind(timeString);
-		time.getKeyFrames().add(new KeyFrame(Duration.seconds(1), e -> {
-			tick();
-		}));
+		time.getKeyFrames().add(new KeyFrame(Duration.seconds(5), e -> tick()));
 		time.setCycleCount(Timeline.INDEFINITE);
 		time.play();
 	}
@@ -31,14 +29,8 @@ public class TimeKeeper {
 		if (hours == 24) {
 			minutes = 0;
 			hours = 0;
-		}
-		
-		StringBuilder sb = new StringBuilder();
-		sb.append(String.valueOf(hours).length()!=2 ? "0" + hours : hours);
-		sb.append(":");
-		sb.append(String.valueOf(minutes).length()!=2 ? "0" + minutes : minutes);
-		
-		timeString.setValue(sb.toString());
+		}		
+		timeString.setValue(String.format("%02d:%02d", hours, minutes));
 	}
 
 }
