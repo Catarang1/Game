@@ -63,6 +63,14 @@ public class Controller_Main implements Initializable {
 	@FXML private Canvas object0Layer;
 	@FXML private VBox sidebar;
 	@FXML private StackPane stack;
+	
+	/* TODO 
+	
+	make templates:
+	 * low colliders
+	 * high wall colliders
+	
+	*/
 
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {

@@ -1,8 +1,9 @@
 package commons.eventScript;
 
+import java.io.*;
 import javafx.scene.image.*;
 
-public class Script_Alert implements EventScript {
+public class Script_Alert implements EventScript, Serializable {
 
 	private Type type;
 	private String text;

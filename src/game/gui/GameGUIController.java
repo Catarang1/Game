@@ -1,6 +1,5 @@
 package game.gui;
 
-import game.logic.Alert;
 import game.logic.Engine;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -132,5 +131,21 @@ public class GameGUIController implements Initializable {
 		dayNightAnimation.setToValue(0.9);
 		dayNightAnimation.setFromValue(0);
 		dayNightAnimation.play();
+	}
+	
+	public GraphicsContext getBackLayerBrush(){
+		return backLayer.getGraphicsContext2D();
+	}
+	
+	public GraphicsContext getActorLayerBrush(){
+		return actorLayer.getGraphicsContext2D();
+	}
+	
+	public GraphicsContext getFrontLayerBrush(){
+		return frontLayer.getGraphicsContext2D();
+	}
+	
+	public Pane getLightLayer(){
+		return lightLayer;
 	}
 }

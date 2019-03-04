@@ -29,8 +29,6 @@ public class FXMLWindow{
 		if (transparent) {
 			stage.initStyle(StageStyle.TRANSPARENT);
 			scene.setFill(Color.TRANSPARENT);
-		} else {
-			stage = new Stage();
 		}
 		stage.setScene(scene);
 		stage.centerOnScreen();

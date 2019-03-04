@@ -3,6 +3,8 @@ package game.logic;
 // @author Jan
 import commons.*;
 import java.io.*;
+import java.util.logging.*;
+import resources.*;
 
 public class MapLoader {
 
@@ -25,6 +27,21 @@ public class MapLoader {
 			} catch (ClassNotFoundException ex) {
 				Engine.console.write("Class not found", Console.ERROR);
 			}
+		}
+	}
+	
+	public void loadTest() {
+		try {
+			
+			ObjectInputStream oos = new ObjectInputStream(DataMap.class.getResourceAsStream("0001.map"));
+			Board loaded = (Board) oos.readObject();
+			Engine.setActiveBoard(loaded);
+			Engine.console.write(Engine.activeBoard.getCode() + " " + Engine.activeBoard.getTitle());
+		
+		} catch (FileNotFoundException ex) {
+			Logger.getLogger(MapLoader.class.getName()).log(Level.SEVERE, null, ex);
+		} catch (IOException | ClassNotFoundException ex) {
+			Logger.getLogger(MapLoader.class.getName()).log(Level.SEVERE, null, ex);
 		}
 	}
 }
