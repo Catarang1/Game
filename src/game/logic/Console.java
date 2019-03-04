@@ -40,7 +40,7 @@ public class Console {
 
 		commands.put("alert", new HashMap<>());
 		commands.get("alert").put("status", () -> Engine.console.write(Engine.alertManager.timerStatus(), INFO));
-		commands.get("alert").put("queue_length", () -> Engine.console.write("Queue length: " + Engine.alertManager.queueLength(), INFO));
+		commands.get("alert").put("qlength", () -> Engine.console.write("Queue length: " + Engine.alertManager.queueLength(), INFO));
 		commands.get("alert").put("test", () -> Engine.alertManager.queueAlert(new Alert(Alert.AlertType.Teleport, "alert test via console")));
 		
 		commands.put("timeset", new HashMap<>());
@@ -50,8 +50,12 @@ public class Console {
 		commands.get("timeset").put("midnight", () -> Engine.timekeeper.setTime(23, 59));
 		
 		commands.put("loadmap", new HashMap<>());
-		commands.get("loadmap").put("test", () -> Engine.maploader.loadTest());
+		commands.get("loadmap").put("test", () -> Engine.boardLoader.loadTest());
 		commands.get("loadmap").put("render", () -> Engine.renderActiveBoard());
+		
+		commands.put("fullscreen", new HashMap<>());
+		commands.get("fullscreen").put("true", () -> Engine.window.getStage().setFullScreen(true));
+		commands.get("fullscreen").put("false", () -> Engine.window.getStage().setFullScreen(false));
 
 	}
 
@@ -69,7 +73,7 @@ public class Console {
 			if (argument.matches("\\d{4}")) {
 				try {
 					Engine.console.write(command + " " + argument, ACCEPT);
-					Engine.maploader.load(argument);
+					Engine.boardLoader.load(argument);
 				} catch (Exception e) {
 				} finally {
 					return;
@@ -102,7 +106,9 @@ public class Console {
 	public void write(String text) {
 		Text out = new Text(text + "\n");
 		out.setFill(Color.WHITE);
-		Engine.controller.getConsoleOutput().getChildren().add(out);
+		Platform.runLater(() -> {
+			Engine.controller.getConsoleOutput().getChildren().add(out);
+		});
 	}
 
 	private static void printKnownCommands() {

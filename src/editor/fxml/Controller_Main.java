@@ -64,9 +64,7 @@ public class Controller_Main implements Initializable {
 	@FXML private VBox sidebar;
 	@FXML private StackPane stack;
 	
-	/* TODO 
-	
-	make templates:
+	/* TODO make templates:
 	 * low colliders
 	 * high wall colliders
 	

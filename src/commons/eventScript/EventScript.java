@@ -10,11 +10,4 @@ public interface EventScript {
 	public boolean isUnique();
 	public int getOrder();
 	
-	/*
-	
-	TODO implement scripts
-	RemoveFlag
-	
-	*/
-	
 }

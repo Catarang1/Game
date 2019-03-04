@@ -24,7 +24,7 @@ public class Engine {
 	public static Console console = new Console();
 	public static Board activeBoard;
 	public static AlertManager alertManager = new AlertManager();
-	public static MapLoader maploader = new MapLoader();
+	public static BoardLoader boardLoader = new BoardLoader();
 	public static TimeKeeper timekeeper = new TimeKeeper();
 
 	public static void setActiveBoard(Board activeBoard) {
@@ -32,6 +32,7 @@ public class Engine {
 	}
 	
 	public static void renderActiveBoard() {
+		clearCanvases();
 		renderBackLayers();
 		actors.clear();
 		spawnActors();
@@ -54,12 +55,11 @@ public class Engine {
 		renderObjects1();
 	}
 
-	private static void renderBackground() {
+	public static void renderBackground() {
 		GraphicsContext brush = controller.getBackLayerBrush();
 		for (int y = 0; y < activeBoard.getTiles()[0].length; y++) {
 			for (int x = 0; x < activeBoard.getTiles()[0][0].length; x++) {
 				char tile = activeBoard.getTiles()[0][y][x];
-				Engine.console.write(String.valueOf(tile));
 				Image toDraw = new Image(DataMap.get().backgroundMap.get(tile));
 				brush.drawImage(toDraw, x * 32, y * 32);
 			}
@@ -69,7 +69,6 @@ public class Engine {
 
 	private static void renderGround0() {
 		GraphicsContext brush = controller.getBackLayerBrush();
-		brush.clearRect(0, 0, brush.getCanvas().getWidth(), brush.getCanvas().getHeight());
 		for (int y = 0; y < activeBoard.getTiles()[0].length; y++) {
 			for (int x = 0; x < activeBoard.getTiles()[1][0].length; x++) {
 				char tile = activeBoard.getTiles()[1][y][x];
@@ -83,9 +82,8 @@ public class Engine {
 
 	private static void renderGround1() {
 		GraphicsContext brush = controller.getBackLayerBrush();
-		brush.clearRect(0, 0, brush.getCanvas().getWidth(), brush.getCanvas().getHeight());
 		for (int y = 0; y < activeBoard.getTiles()[0].length; y++) {
-			for (int x = 0; x < activeBoard.getTiles()[1][0].length; x++) {
+			for (int x = 0; x < activeBoard.getTiles()[2][0].length; x++) {
 				char tile = activeBoard.getTiles()[2][y][x];
 				if (DataMap.get().groundMap.keySet().contains(tile)) {
 					Image toDraw = new Image(DataMap.get().groundMap.get(tile));
@@ -97,9 +95,8 @@ public class Engine {
 
 	private static void renderObjects0() {
 		GraphicsContext brush = controller.getFrontLayerBrush();
-		brush.clearRect(0, 0, brush.getCanvas().getWidth(), brush.getCanvas().getHeight());
 		for (int y = 0; y < activeBoard.getTiles()[0].length; y++) {
-			for (int x = 0; x < activeBoard.getTiles()[3][0].length; x++) {
+			for (int x = 0; x < activeBoard.getTiles()[4][0].length; x++) {
 				char tile = activeBoard.getTiles()[4][y][x];
 				if (DataMap.get().objectMap.keySet().contains(tile)) {
 					Image toDraw = new Image(DataMap.get().objectMap.get(tile));
@@ -111,9 +108,8 @@ public class Engine {
 	
 	private static void renderObjects1() {
 		GraphicsContext brush = controller.getFrontLayerBrush();
-		brush.clearRect(0, 0, brush.getCanvas().getWidth(), brush.getCanvas().getHeight());
 		for (int y = 0; y < activeBoard.getTiles()[0].length; y++) {
-			for (int x = 0; x < activeBoard.getTiles()[3][0].length; x++) {
+			for (int x = 0; x < activeBoard.getTiles()[5][0].length; x++) {
 				char tile = activeBoard.getTiles()[5][y][x];
 				if (DataMap.get().objectMap.keySet().contains(tile)) {
 					Image toDraw = new Image(DataMap.get().objectMap.get(tile));
@@ -126,7 +122,7 @@ public class Engine {
 	private static void renderLights() {
 		controller.getLightLayer().getChildren().clear();
 		for (int y = 0; y < activeBoard.getTiles()[0].length; y++) {
-			for (int x = 0; x < activeBoard.getTiles()[5][0].length; x++) {
+			for (int x = 0; x < activeBoard.getTiles()[7][0].length; x++) {
 				char tile = activeBoard.getTiles()[7][y][x];
 				if (DataMap.get().lightMapActual.keySet().contains(tile)) {
 					Circle toDraw = new Circle();
@@ -138,6 +134,13 @@ public class Engine {
 				}
 			}
 		}
+	}
+
+	private static void clearCanvases() {
+		controller.getBackLayerBrush().clearRect(0, 0, 1280, 704);
+		controller.getActorLayerBrush().clearRect(0, 0, 1280, 704);
+		controller.getFrontLayerBrush().clearRect(0, 0, 1280, 704);
+		controller.getLightLayer().getChildren().clear();
 	}
 
 	

@@ -6,9 +6,12 @@ import java.io.*;
 import java.util.logging.*;
 import resources.*;
 
-public class MapLoader {
+public class BoardLoader {
 
 	public void load(String code) {
+		
+		//TODO check path of loading ( loading some naughty bois outside of project )
+		
 		Engine.console.write("load method echo");
 		if (!code.matches("(\\d){4}")) {
 			Engine.console.write("code does not match regex for map ID");
@@ -39,9 +42,9 @@ public class MapLoader {
 			Engine.console.write(Engine.activeBoard.getCode() + " " + Engine.activeBoard.getTitle());
 		
 		} catch (FileNotFoundException ex) {
-			Logger.getLogger(MapLoader.class.getName()).log(Level.SEVERE, null, ex);
+			Logger.getLogger(BoardLoader.class.getName()).log(Level.SEVERE, null, ex);
 		} catch (IOException | ClassNotFoundException ex) {
-			Logger.getLogger(MapLoader.class.getName()).log(Level.SEVERE, null, ex);
+			Logger.getLogger(BoardLoader.class.getName()).log(Level.SEVERE, null, ex);
 		}
 	}
 }
