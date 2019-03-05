@@ -1,17 +1,13 @@
 package sandbox;
 
-import java.util.*;
+import commons.*;
 
 public class test01 {
 	public static void main(String[] args) {
 		
-		HashSet<String> set = new HashSet<>();
-		set.add("something");
-		set.add("else");
+		RegExMap<String, String> map = new RegExMap<>();
+		map.put("something", "value of digit key");
 		
-		String x = "something";
-		
-		System.out.println(set.contains(x));
-		
+		System.out.println(map.get("something"));
 	}
 }

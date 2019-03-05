@@ -17,7 +17,7 @@ public class TimeKeeper {
 		time.getKeyFrames().add(new KeyFrame(Duration.seconds(5), e -> tick()));
 		time.setCycleCount(Timeline.INDEFINITE);
 		time.play();
-	}
+	}	
 
 	public void setTime(int h, int m) {
 		if (h < 0 || h > 23 || m < 0 || m > 59) return;
@@ -25,6 +25,13 @@ public class TimeKeeper {
 		minutes = m;
 		updateShownTime();
 		checkCycle();
+	}
+	
+	public void setTime(String s) {
+		if (s.matches("(\\d){2}:(\\d){2}")) {
+			String[] parsedString = s.split(":");
+			setTime(Integer.parseInt(parsedString[0]), Integer.parseInt(parsedString[1]));
+		}
 	}
 
 	public void tick() {
