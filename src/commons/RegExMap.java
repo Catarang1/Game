@@ -5,7 +5,6 @@ public class RegExMap<K, V> extends HashMap<K, V> {
 
 	@Override
 	public V get(Object key) {
-
 		String keyAsString = key.toString();
 		String regExKey = null;
 		Iterator it = keySet().iterator();
@@ -15,22 +14,18 @@ public class RegExMap<K, V> extends HashMap<K, V> {
 				regExKey = keyFromSet;
 		}
 		return (regExKey == null) ? null : super.get(regExKey);
-
 	}
 
 	@Override
 	public boolean containsKey(Object key) {
 		String keyAsString = key.toString();
 		Iterator it = keySet().iterator();
-		Boolean result = null;
-		
-		while (it.hasNext() && (result == null)) {
+
+		while (it.hasNext()) {
 			String keyFromSet = it.next().toString();
-			if (keyAsString.matches(keyFromSet)) {
-				result = true;
-				break;
-			}
+			if (keyAsString.matches(keyFromSet)) 
+				return true;
 		}
-		return (result == null) ? false : true;
+		return false;
 	}
 }

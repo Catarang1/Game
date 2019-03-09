@@ -20,7 +20,10 @@ public class TimeKeeper {
 	}	
 
 	public void setTime(int h, int m) {
-		if (h < 0 || h > 23 || m < 0 || m > 59) return;
+		if (h < 0 || h > 23 || m < 0 || m > 59) {
+			Engine.console.write("hour or minute input is not valid", Console.ERROR);
+			return;
+		}
 		hours = h;
 		minutes = m;
 		updateShownTime();
@@ -54,11 +57,14 @@ public class TimeKeeper {
 	}
 
 	private void checkCycle() {
-		if (hours == 7) {
-			Engine.controller.sunrise();
-		} else if (hours == 19) {
+		if (isNightTime())
 			Engine.controller.dawn();
-		}
+		else
+			Engine.controller.sunrise();
+	}
+	
+	private boolean isNightTime(){
+		return hours < 6 || hours > 18;
 	}
 
 }

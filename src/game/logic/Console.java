@@ -1,14 +1,10 @@
 package game.logic;
 
-import com.sun.org.apache.xerces.internal.jaxp.*;
 import commons.*;
-import game.logic.Engine;
 import java.util.*;
 import javafx.application.*;
 import javafx.scene.paint.*;
 import javafx.scene.text.*;
-import javax.xml.parsers.*;
-import org.xml.sax.*;
 
 public class Console {
 
@@ -43,9 +39,15 @@ public class Console {
 		commands.put("alert", new RegExMap<>());
 		commands.get("alert").put("status", () -> Engine.console.write(Engine.alertManager.timerStatus(), INFO));
 		commands.get("alert").put("qlength", () -> Engine.console.write("Queue length: " + Engine.alertManager.queueLength(), INFO));
-		commands.get("alert").put("test", () -> Engine.alertManager.queueAlert(new Alert(Alert.AlertType.Teleport, "alert test via console")));
+		commands.get("alert").put("test", () -> {
+			Alert.AlertType[] alerts = Alert.AlertType.values();
+			int index = new Random().nextInt(alerts.length);
+			Alert random = new Alert(alerts[index], "Alert test via console");
+			Engine.alertManager.queueAlert(random);
+		});
 
 		commands.put("settime", new RegExMap<>());
+		commands.get("settime").put("time in hh:mm format", () -> {});
 		commands.get("settime").put("(\\d){2}:(\\d){2}", () -> Engine.timekeeper.setTime(activeArgument));
 
 		commands.put("loadmap", new RegExMap<>());
@@ -57,6 +59,7 @@ public class Console {
 		commands.get("fullscreen").put("false", () -> Engine.window.getStage().setFullScreen(false));
 
 		commands.put("load", new RegExMap<>());
+		commands.get("load").put("4-digit code of map ex: 1234, 7895", () -> {});
 		commands.get("load").put("(\\d){4}", () -> Engine.boardLoader.load(activeArgument));
 
 	}

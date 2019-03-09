@@ -1,6 +1,7 @@
 
 package game.logic;
 
+import game.logic.actor.Actor;
 import commons.*;
 import editor.*;
 import game.gui.GameGUIController;

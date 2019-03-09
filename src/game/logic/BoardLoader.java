@@ -1,6 +1,7 @@
 package game.logic;
 
-// @author Jan
+//@author Jan
+		
 import commons.*;
 import java.io.*;
 import java.util.logging.*;
@@ -11,7 +12,7 @@ public class BoardLoader {
 	public void load(String code) {
 		
 		//TODO check path of loading ( loading some naughty bois outside of project )
-		
+
 		Engine.console.write("load method echo");
 		if (!code.matches("(\\d){4}")) {
 			Engine.console.write("code does not match regex for map ID");
@@ -19,7 +20,7 @@ public class BoardLoader {
 		} else {
 			Engine.console.write("code matches regex");
 			try {
-				FileInputStream fis = new FileInputStream("boards/" + code + ".map");
+				FileInputStream fis = new FileInputStream("/boards/" + code + ".map");
 				ObjectInputStream ois = new ObjectInputStream(fis);
 				Board loaded = (Board) ois.readObject();
 				Engine.activeBoard = loaded;

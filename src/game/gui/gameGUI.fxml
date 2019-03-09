@@ -16,7 +16,7 @@
 
 <VBox fx:id="root" alignment="CENTER" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="game.gui.GameGUIController">
    <children>
-      <StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="704.0" prefWidth="1280.0" style="-fx-background-color: #03070a;" VBox.vgrow="NEVER">
+      <StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="704.0" prefWidth="1280.0" style="-fx-background-color: #062551;" VBox.vgrow="NEVER">
          <children>
             <Canvas fx:id="backLayer" cache="true" height="704.0" width="1280.0" />
             <Canvas fx:id="actorLayer" cache="true" height="704.0" width="1280.0" />
@@ -72,11 +72,11 @@
                         </Label>
                      </children>
                   </VBox>
-                  <VBox fx:id="consoleWrapper" layoutX="30.0" layoutY="30.0" prefHeight="235.0" prefWidth="389.0" spacing="5.0" stylesheets="@consoleStyle.css">
+                  <VBox fx:id="consoleWrapper" layoutX="30.0" layoutY="30.0" prefHeight="643.0" prefWidth="389.0" spacing="5.0" stylesheets="@consoleStyle.css">
                      <children>
-                        <ScrollPane fx:id="consoleScroll" fitToWidth="true" hbarPolicy="NEVER" vbarPolicy="ALWAYS" VBox.vgrow="ALWAYS">
+                        <ScrollPane fx:id="consoleScroll" fitToWidth="true" focusTraversable="false" hbarPolicy="NEVER" vbarPolicy="ALWAYS" VBox.vgrow="ALWAYS">
                            <content>
-                              <TextFlow fx:id="consoleOut" prefHeight="200.0" prefWidth="200.0" style="-fx-font-family: monospace; -fx-background-color: #000000CC; -fx-text-fill: #fff; -fx-font-size: 12; -fx-font-weight: bold;">
+                              <TextFlow fx:id="consoleOut" prefWidth="200.0" style="-fx-font-family: monospace; -fx-text-fill: #fff; -fx-font-size: 12; -fx-font-weight: bold;">
                                  <padding>
                                     <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                  </padding>
